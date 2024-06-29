@@ -1,0 +1,16 @@
+{
+    "editor.formatOnType": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "files.autoSave": "onFocusChange",
+    "vs-code-prettier-eslint.prettierLast": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "always",
+        "source.fixAll.eslint": "always",
+        "source.organizeImports": "never",
+    },
+    "jestrunner.jestCommand": "npm run test --",
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 140
+}
