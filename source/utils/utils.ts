@@ -84,20 +84,10 @@ export const exec = async (
 
 export const npxPackageAvailable = async (packageName: string) => {
   // Try local package search first
-  let [success, stdout, stderr] = await exec(
-    `npm`,
-    'ls',
-    packageName,
-    '--depth=0'
-  );
+  let [success] = await exec(`npm`, 'ls', packageName, '--depth=0');
   if (!success) {
     // Try global packages next
-    [success, stdout, stderr] = await exec(
-      `npm`,
-      'ls',
-      packageName,
-      '--global'
-    );
+    [success] = await exec(`npm`, 'ls', packageName, '--global');
   }
   return success;
 };

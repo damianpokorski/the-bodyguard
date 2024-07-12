@@ -1,6 +1,5 @@
 import { exceptions } from './../utils/strings';
 import {
-  log,
   npxPackageAvailable,
   CribriBuildException,
   success,
