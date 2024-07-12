@@ -6,7 +6,7 @@ import { readFileSync, readdirSync, writeFileSync } from 'fs';
 import { exceptions } from '../utils/strings';
 import {
   InferredOptions,
-  SafetyNetBuildException,
+  CribriBuildException,
   error,
   log,
   rollbackLine,
@@ -130,7 +130,7 @@ export const betterValidatorShort = (data, options = {}) => {
       success(`${opts.paths.validators}/${modelName}.ts`);
     }
   } catch (error) {
-    throw new SafetyNetBuildException(
+    throw new CribriBuildException(
       exceptions.failedToGenerateValidators,
       error
     );

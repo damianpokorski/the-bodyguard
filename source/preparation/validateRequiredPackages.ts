@@ -2,7 +2,7 @@ import { exceptions } from './../utils/strings';
 import {
   log,
   npxPackageAvailable,
-  SafetyNetBuildException,
+  CribriBuildException,
   success,
   warn
 } from './../utils/utils';
@@ -29,7 +29,7 @@ export const validateRequiredPackages = async (): Promise<void> => {
           .map((installedPkg) => installedPkg.pkg)
           .join(' ')} --save-dev`
       );
-      throw new SafetyNetBuildException(exceptions.missingPackages);
+      throw new CribriBuildException(exceptions.missingPackages);
     }
   }
 };

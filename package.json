@@ -1,6 +1,6 @@
 {
-  "name": "harness",
-  "version": "1.0.0",
+  "name": "cribri",
+  "version": "0.0.1",
   "description": "An opinionated microservice wrapper for rapid development based off OpenAPI documentation",
   "main": "bin/cli.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "test:coverage": "npm run test -- --coverage"
   },
   "author": "Damian Pokorski @damianpokorski",
-  "license": "ISC",
+  "license": "MIT",
   "type": "commonjs",
   "devDependencies": {
     "@apideck/better-ajv-errors": "^0.3.6",

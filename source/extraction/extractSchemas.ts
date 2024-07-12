@@ -2,11 +2,7 @@ import { Resolver } from '@stoplight/json-ref-resolver';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { OpenApiSpec } from '../preparation/parseSpec';
-import {
-  InferredOptions,
-  SafetyNetBuildException,
-  success
-} from '../utils/utils';
+import { InferredOptions, CribriBuildException, success } from '../utils/utils';
 
 export const extractSchemas = async (
   schema: OpenApiSpec,
@@ -31,6 +27,6 @@ export const extractSchemas = async (
       success(resultSchemaPath);
     }
   } catch (error) {
-    throw new SafetyNetBuildException('Failed to extract schemas', error);
+    throw new CribriBuildException('Failed to extract schemas', error);
   }
 };

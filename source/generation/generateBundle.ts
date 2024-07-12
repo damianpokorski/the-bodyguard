@@ -4,7 +4,7 @@ import { spawnSync } from 'node:child_process';
 import { join } from 'path';
 import {
   InferredOptions,
-  SafetyNetBuildException,
+  CribriBuildException,
   defaultEncoding,
   log,
   rollbackLine,
@@ -21,15 +21,15 @@ export const generateBundle = async (opts: InferredOptions): Promise<void> => {
     // Initialize barrel file generation
     const barrel = [
       `
-        interface SafetyNetValidator<T> {
+        interface CribriValidator<T> {
             <T>(data: unknown): boolean
         };`,
 
-      `interface SafetyNetValidatorWithErrors<T> {
+      `interface CribriValidatorWithErrors<T> {
     (data: unknown): [T | undefined, string[] | undefined]
 };
 
-interface SafetyNetValidatorWithDetailedErrors<T> {
+interface CribriValidatorWithDetailedErrors<T> {
     (data: unknown): [T | undefined, {
         suggestion?: string;
         start: { line: number; column: number; offset: number };
@@ -39,11 +39,11 @@ interface SafetyNetValidatorWithDetailedErrors<T> {
     }[] | undefined]
 };
 
-interface SafetyNet<T> {
+interface Cribri<T> {
     schema: any,
-    validator: SafetyNetValidator<T>,
-    validatorWithErrors: SafetyNetValidatorWithErrors<T>,
-    validatorWithDetailedErrors: SafetyNetValidatorWithDetailedErrors<T>,
+    validator: CribriValidator<T>,
+    validatorWithErrors: CribriValidatorWithErrors<T>,
+    validatorWithDetailedErrors: CribriValidatorWithDetailedErrors<T>,
 };
 ;`
     ];
@@ -73,8 +73,8 @@ interface SafetyNet<T> {
           `/* ${modelNameTitleCase} - AJV Validators */`,
           `import * as ${modelName}Module  from './validators/${validator}';`,
           `export const ${modelNameTitleCase}Validator = ${modelName}Module.${modelName}Validator;`,
-          `export const ${modelNameTitleCase}ValidatorWithErrors = ${modelName}Module.${modelName}ValidatorWithErrorsShort as unknown as SafetyNetValidatorWithErrors<${modelNameTitleCase}>;`,
-          `export const ${modelNameTitleCase}ValidatorWithErrorsWithHints = ${modelName}Module.${modelName}ValidatorWithErrors as unknown as SafetyNetValidatorWithDetailedErrors<${modelNameTitleCase}>;`,
+          `export const ${modelNameTitleCase}ValidatorWithErrors = ${modelName}Module.${modelName}ValidatorWithErrorsShort as unknown as CribriValidatorWithErrors<${modelNameTitleCase}>;`,
+          `export const ${modelNameTitleCase}ValidatorWithErrorsWithHints = ${modelName}Module.${modelName}ValidatorWithErrors as unknown as CribriValidatorWithDetailedErrors<${modelNameTitleCase}>;`,
           ``,
           `/* ${modelNameTitleCase} - JSON Schemas */`,
           `export const ${modelNameTitleCase}Schema = ${modelName}Module.${modelName}Schema;`,
@@ -106,7 +106,7 @@ interface SafetyNet<T> {
       {}
     );
     if (s.error || s.status !== 0) {
-      throw new SafetyNetBuildException(
+      throw new CribriBuildException(
         `${exceptions.failedToGenerateBundleDeclarations}`,
         s.error
       );
@@ -134,7 +134,7 @@ interface SafetyNet<T> {
       {}
     );
     if (e.error || e.status !== 0) {
-      throw new SafetyNetBuildException(
+      throw new CribriBuildException(
         `${exceptions.failedToGenerateBundleEsbuild}`,
         s.error
       );
@@ -144,7 +144,7 @@ interface SafetyNet<T> {
     rollbackLine();
     success('Bundled and minified (esbuild)');
   } catch (e) {
-    throw new SafetyNetBuildException(
+    throw new CribriBuildException(
       `${exceptions.failedToGenerateBundle} -2`,
       e
     );

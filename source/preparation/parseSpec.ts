@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'fs';
 import { load } from 'js-yaml';
 import { exceptions } from '../utils/strings';
-import { InferredOptions, SafetyNetBuildException } from '../utils/utils';
+import { InferredOptions, CribriBuildException } from '../utils/utils';
 
 interface OpenApiSpecComponent {
   schemas: Record<string, unknown>;
@@ -20,6 +20,6 @@ export const parseSpec = async (opts: InferredOptions) => {
     }
     return load(readFileSync(opts.openapi, 'utf-8')) as OpenApiSpec;
   } catch (error) {
-    throw new SafetyNetBuildException(exceptions.invalidOpenApiFile, error);
+    throw new CribriBuildException(exceptions.invalidOpenApiFile, error);
   }
 };

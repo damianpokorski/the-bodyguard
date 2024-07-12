@@ -11,7 +11,7 @@ import {
 import { join } from 'path';
 import {
   InferredOptions,
-  SafetyNetBuildException,
+  CribriBuildException,
   log,
   rollbackLine,
   success
@@ -53,7 +53,7 @@ export const generateModels = async (opts: InferredOptions): Promise<void> => {
       {}
     );
     if (s.error) {
-      throw new SafetyNetBuildException(
+      throw new CribriBuildException(
         exceptions.failedToGenerateModelsUsingOpenAPIGenerator,
         s.error
       );
@@ -96,6 +96,6 @@ export const generateModels = async (opts: InferredOptions): Promise<void> => {
       success(filePath);
     }
   } catch (error) {
-    throw new SafetyNetBuildException(exceptions.failedToGenerateModels, error);
+    throw new CribriBuildException(exceptions.failedToGenerateModels, error);
   }
 };
