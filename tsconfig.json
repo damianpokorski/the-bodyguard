@@ -36,6 +36,8 @@
         "outDir": "./dist"
     },
     "exclude": [
-        "./bin/**/*",
+        "./bin",
+        "./coverage",
+        "tmp"
     ]
 }
