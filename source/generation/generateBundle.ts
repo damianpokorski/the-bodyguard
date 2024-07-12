@@ -1,4 +1,4 @@
-import * as esbuild from 'esbuild';
+// import * as esbuild from 'esbuild';
 import { cpSync, readFileSync, readdirSync, writeFileSync } from 'fs';
 import { spawnSync } from 'node:child_process';
 import { join } from 'path';
@@ -78,8 +78,8 @@ interface SafetyNet<T> {
             `--removeComments`,
             `--emitDeclarationOnly`
         ], {});
-        if (s.error) {
-            throw new SafetyNetBuildException(`${exceptions.failedToGenerateBundle} -1 `, s.error);
+        if (s.error || s.status !== 0) {
+            throw new SafetyNetBuildException(`${exceptions.failedToGenerateBundleDeclarations}`, s.error);
         }
         rollbackLine();
         success("Validated & generated declaration files using tsc")
@@ -87,35 +87,26 @@ interface SafetyNet<T> {
         // Minify
         log(`Bundling & minifying... (esbuild / commonjs)`, false)
 
-        // // mjs to be handled in the future maybe
-        // // await esbuild.build({
-        // //     entryPoints: [`${opts.paths.barrel}`],
-        // //     bundle: true,
-        // //     outfile: join(opts.paths.dist, `index.mjs.js`),
-        // //     minify: true,
-        // //     keepNames: true,
-        // //     treeShaking: true,
-        // //     target: 'es2020',
-        // //     format: 'esm'
-        // // });
+        const e = spawnSync(`npx`, [`esbuild`,
+            `--bundle`,
+            // `--outfile=${join(opts.paths.dist, `index.cjs.js`)}`,
+            `--outfile=${join(opts.paths.dist, `index.js`)}`,
+            `--minify`,
+            `--keep-names`,
+            `--tree-shaking`,
+            `--target=es2020`,
+            `--format=cjs`,
+            opts.paths.barrel,
+        ], {});
+        if (e.error || e.status !== 0) {
+            throw new SafetyNetBuildException(`${exceptions.failedToGenerateBundleEsbuild}`, s.error);
+        }
 
-        await esbuild.build({
-            entryPoints: [`${opts.paths.barrel}`],
-            bundle: true,
-            outfile: join(opts.paths.dist, `index.cjs.js`),
-            minify: true,
-            keepNames: true,
-            treeShaking: true,
-            target: 'es2020',
-            format: 'cjs'
-        });
-        cpSync(opts.paths.barrelDeclarations, join(opts.paths.dist, `index.mjs.d.ts`));
-        cpSync(opts.paths.barrelDeclarations, join(opts.paths.dist, `index.cjs.d.ts`));
+        cpSync(opts.paths.barrelDeclarations, join(opts.paths.dist, `index.d.ts`));
         rollbackLine();
-        success("Bundled and minified (esbuild")
+        success("Bundled and minified (esbuild)")
 
     } catch (e) {
-        console.log(e);
         throw new SafetyNetBuildException(`${exceptions.failedToGenerateBundle} -2`, e)
     }
 };

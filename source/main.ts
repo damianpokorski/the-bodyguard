@@ -1,5 +1,4 @@
-
-// import * as generated from '../tests/e2e/.petstore-output/dist';
+import { exceptions } from './utils/strings';
 import { extractSchemas } from './extraction/extractSchemas';
 import { generateBundle } from './generation/generateBundle';
 import { generateModels } from './generation/generateModels';
@@ -7,11 +6,16 @@ import { generateValidators } from './generation/generateValidators';
 import { parseSpec } from './preparation/parseSpec';
 import { prepareDirs } from './preparation/prepareDirs';
 import { Options, log, parseOptions, success } from './utils/utils';
+import { validateRequiredPackages } from './preparation/validateRequiredPackages';
 export const main = async (config: Options) => {
     const opts = parseOptions(config);
 
+    //
+    log(`Checking whether the required NPM packages are installed...`)
+    await validateRequiredPackages();
+
     // Import
-    log(`Starting...`)
+    log(`\nStarting...`)
     await prepareDirs(opts);
     const spec = await parseSpec(opts);
     success(`OpenAPI Specification validated`);

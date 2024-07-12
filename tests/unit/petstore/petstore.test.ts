@@ -1,9 +1,14 @@
 import { main } from "@main";
 import { exceptions } from "@utils/strings";
 import { Options, SafetyNetBuildException } from "@utils/utils";
-import { exceptionBuilder } from "../unit.utils";
+import { cleanUpDir, exceptionBuilder } from "../unit.utils";
 
-describe("Petstore tests", () => {
+const testDirs = [
+    './tests/.builds.invalid-file-path',
+    './tests/.builds.sample-generation'
+]
+
+describe("Petstore generation tests", () => {
     jest.setTimeout(60000);
     jest.useFakeTimers();
 
@@ -16,12 +21,21 @@ describe("Petstore tests", () => {
         write: jest.spyOn(process.stdout, "write").mockImplementation(jest.fn())
     };
 
-    describe("Fails to generate ", () => {
+    // Cleaning up temporarary dirs, before and after each run
+    const cleanUp = () => {
+        for (const testDir of testDirs) {
+            cleanUpDir(testDir);
+        }
+    }
+    beforeEach(() => cleanUp());
+    afterEach(() => cleanUp());
+
+    describe("Fails to generate", () => {
         it("Fails to generate with missing OpenAPI", async () => {
             // Arrange
             const opts: Options = {
                 openapi: "./invalid-file.yaml",
-                output: './tests/.builds.invalid-file-path'
+                output: testDirs[0]
             };
 
             // Act
@@ -36,13 +50,13 @@ describe("Petstore tests", () => {
         // Arrange
         const opts: Options = {
             openapi: "tests/unit/petstore/petstore.yaml",
-            output: './tests/.builds.sample-generation'
+            output: testDirs[1]
         };
 
         // Act
         const result = await main(opts);
 
         // Assert
-        expect(mocks.write).toHaveBeenCalledWith([]);
+        expect(mocks.write).toMatchSnapshot();
     })
 });

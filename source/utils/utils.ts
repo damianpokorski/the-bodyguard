@@ -1,4 +1,5 @@
 import { default as cliColor } from 'cli-color';
+import { spawnSync } from 'node:child_process';
 import { join } from 'path';
 
 export const log = (message?: string, newline = true) => process.stdout.write(`${(message ?? '')}${newline ? '\n' : ''}`);
@@ -41,13 +42,13 @@ export const parseOptions = (input: Options): InferredOptions => ({
     ...input,
     paths: {
         main: input.output,
-        barrel: join(input.output, 'index.ts'),
-        barrelDeclarations: join(input.output, 'index.d.ts'),
-        models: join(input.output, 'models'),
-        schemas: join(input.output, 'schemas'),
-        validators: join(input.output, 'validators'),
-        dist: join(input.output, 'dist'),
-        tmp: join(input.output, 'tmp')
+        barrel: join(process.cwd(), input.output, 'index.ts'),
+        barrelDeclarations: join(process.cwd(), input.output, 'index.d.ts'),
+        models: join(process.cwd(), input.output, 'models'),
+        schemas: join(process.cwd(), input.output, 'schemas'),
+        validators: join(process.cwd(), input.output, 'validators'),
+        dist: join(process.cwd(), input.output, 'dist'),
+        tmp: join(process.cwd(), input.output, 'tmp')
     }
 });
 
@@ -62,4 +63,23 @@ export class SafetyNetBuildException extends Error {
             ].filter(isValid => isValid).join(' - ')
         );
     }
+}
+
+export const exec = async (cmd: string, ...args: string[]): Promise<[boolean, string, string]> => {
+    const result = spawnSync(cmd, args, {});
+    return [
+        result.status == 0 && result.error == undefined,
+        result.stdout.toString(),
+        result.stderr.toString()
+    ];
+}
+
+export const npxPackageAvailable = async (packageName: string) => {
+    // Try local package search first
+    let [success, stdout, stderr] = (await exec(`npm`, 'ls', packageName, '--depth=0'));
+    if (!success) {
+        // Try global packages next
+        [success, stdout, stderr] = (await exec(`npm`, 'ls', packageName, '--global'));
+    }
+    return success;
 }

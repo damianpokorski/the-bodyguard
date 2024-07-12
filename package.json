@@ -4,10 +4,12 @@
   "description": "An opinionated microservice wrapper for rapid development based off OpenAPI documentation",
   "main": "bin/cli.js",
   "scripts": {
+    "build": "ts-node build.ts",
     "lint": "npx eslint source",
     "lint:fix": "npx eslint source --fix",
     "cli": "ts-node source/index.ts",
-    "dev": "rm -rf tmp && mkdir -p tmp && npm run cli -- --openapi tests/unit/petstore/petstore.yaml --output ./tmp/petstore-dev",
+    "start": "rm -rf tmp && mkdir -p tmp && npm run cli -- --openapi tests/unit/petstore/petstore.yaml --output ./tmp/petstore-dev",
+    "start:build": "npm run build && rm -rf tmp && mkdir -p tmp && node bin/index.js --openapi tests/unit/petstore/petstore.yaml --output ./tmp/petstore-dev",
     "test:prepare": "npm run cli -- --openapi tests/unit/petstore/petstore.yaml --output ./tests/.builds.petstore-output",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:safe": "jest",
@@ -15,22 +17,19 @@
   },
   "author": "Damian Pokorski @damianpokorski",
   "license": "ISC",
+  "type": "commonjs",
   "devDependencies": {
     "@apideck/better-ajv-errors": "^0.3.6",
-    "@eslint/js": "^9.5.0",
     "@tsconfig/node22": "^22.0.0",
     "@types/cli-color": "^2.0.6",
-    "@types/eslint__js": "^8.42.3",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.14.2",
     "cli-color": "^2.0.4",
     "commander": "^12.1.0",
-    "eslint": "^8.57.0",
     "jest": "^29.7.0",
     "jest-cucumber": "^4.4.0",
     "ts-jest": "^29.1.5",
-    "typescript": "^5.5.3",
-    "typescript-eslint": "^7.13.0"
+    "typescript": "^5.5.3"
   },
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.13.4",

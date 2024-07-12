@@ -52,14 +52,6 @@ export const betterValidator = (data, options = {}) => {
     }
     // Otherwise generate better errors
     // const errors = betterAjvErrors(schema11, data, validate10.errors, { format: 'js' });
-    console.log({
-        msg:"calling bae with",
-        params: {
-            schema: schema11, 
-            data, 
-            errors: validate10.errors
-        }
-    });
     const errors = betterAjvErrors({
         schema: schema11, 
         data, 
@@ -115,7 +107,6 @@ export const betterValidatorShort = (data, options = {}) => {
             // Log progress
             success(`${opts.paths.validators}/${modelName}.ts`);
         }
-        log();
     } catch (error) {
         throw new SafetyNetBuildException(exceptions.failedToGenerateValidators, error);
     }

@@ -1,7 +1,14 @@
 import type { JestConfigWithTsJest } from 'ts-jest';
 import { pathsToModuleNameMapper } from 'ts-jest';
-import { compilerOptions } from './tsconfig.json';
+import { readFileSync } from 'fs';
+import ts from 'typescript';
 
+const { compilerOptions } = JSON.parse(readFileSync('./tsconfig.json', { encoding: 'utf-8' })) as {
+    compilerOptions: {
+        baseUrl: string,
+        paths: ts.MapLike<string[]>
+    }
+}
 const config: JestConfigWithTsJest = {
     verbose: true,
     testMatch: [

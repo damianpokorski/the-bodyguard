@@ -1,4 +1,5 @@
-import { ApiResponseSchema, ApiResponseValidator, ApiResponseValidatorWithErrors, CategorySchema, CategoryValidator, CategoryValidatorWithErrors, OrderSchema, OrderValidator, OrderValidatorWithErrors, Pet, PetSchema, PetValidator, PetValidatorWithErrors, PetValidatorWithErrorsWithHints, TagSchema, TagValidator, TagValidatorWithErrors, UserSchema, UserValidator, UserValidatorWithErrors } from './../../.builds.petstore-output/dist/index.cjs';
+import { ApiResponseSchema, ApiResponseValidator, ApiResponseValidatorWithErrors, CategorySchema, CategoryValidator, CategoryValidatorWithErrors, OrderSchema, OrderValidator, OrderValidatorWithErrors, Pet, PetSchema, PetValidator, PetValidatorWithErrors, PetValidatorWithErrorsWithHints, TagSchema, TagValidator, TagValidatorWithErrors, UserSchema, UserValidator, UserValidatorWithErrors } from './../../.builds.petstore-output/dist';
+
 
 describe.each`
     name             | schema               | validator               | validatorWithErrors
@@ -73,30 +74,5 @@ describe("Lab rat tests", () => {
         // Assert
         expect(errors).toEqual(undefined);
         expect(validatedPet).toBeDefined();
-    })
-    it("Can validate (using cjs)", async () => {
-        // Arrange
-        const labRat = {
-            // "name": "bobby",
-            // "photoUrls": {}
-        };
-
-        const a = PetValidator(labRat);
-        const b = PetValidatorWithErrors(labRat);
-        const c = PetValidatorWithErrorsWithHints(labRat);
-        const d = (PetValidator as unknown as Record<string, unknown>)['errors'];
-        console.log(JSON.stringify({
-            PetSchema,
-            a, b, c, d,
-        }, null, 4));
-        // const pet = {};
-        // // Act
-        // const [validatedPet, validationErrors] = generatedLibEsm.PetValidatorWithErrors(pet);
-
-        // // Assert
-        // expect(validatedPet).toBeUndefined();
-        // expect(validationErrors).toEqual([
-        //     ''
-        // ])
     })
 });
