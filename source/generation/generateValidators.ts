@@ -53,7 +53,6 @@ export const generateValidators = async (
 
       // Add better-ajv-errors wrapper fn into the function before compiling
       moduleCode += `
-// const betterAjvErrors = require('@sidvind/better-ajv-errors').default;
 const betterAjvErrors = require('@apideck/better-ajv-errors').betterAjvErrors;
 export const betterValidator = (data, options = {}) => {
     const result = validate10(data, options);
