@@ -3,16 +3,16 @@ import addFormats from 'ajv-formats';
 import { default as ajvStandaloneCode } from 'ajv/dist/standalone';
 import * as esbuild from 'esbuild';
 import { readFileSync, readdirSync, writeFileSync } from 'fs';
-import { exceptions } from '../utils/strings';
 import {
-  InferredOptions,
   CribriBuildException,
+  InferredOptions,
   error,
+  exceptions,
   log,
   rollbackLine,
   success,
   warn
-} from '../utils/utils';
+} from '../utils';
 
 export const generateValidators = async (
   opts: InferredOptions

@@ -2,7 +2,7 @@ import { Resolver } from '@stoplight/json-ref-resolver';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { OpenApiSpec } from '../preparation/parseSpec';
-import { InferredOptions, CribriBuildException, success } from '../utils/utils';
+import { CribriBuildException, InferredOptions, success } from '../utils';
 
 export const extractSchemas = async (
   schema: OpenApiSpec,

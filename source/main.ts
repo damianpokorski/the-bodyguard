@@ -4,8 +4,9 @@ import { generateModels } from './generation/generateModels';
 import { generateValidators } from './generation/generateValidators';
 import { parseSpec } from './preparation/parseSpec';
 import { prepareDirs } from './preparation/prepareDirs';
-import { Options, log, parseOptions, success } from './utils/utils';
 import { validateRequiredPackages } from './preparation/validateRequiredPackages';
+import { Options, log, parseOptions, success } from './utils';
+
 export const main = async (config: Options) => {
   const opts = parseOptions(config);
 

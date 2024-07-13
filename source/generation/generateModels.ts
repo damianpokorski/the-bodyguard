@@ -10,13 +10,13 @@ import {
 } from 'fs';
 import { join } from 'path';
 import {
-  InferredOptions,
   CribriBuildException,
+  InferredOptions,
+  exceptions,
   log,
   rollbackLine,
   success
-} from '../utils/utils';
-import { exceptions } from './../utils/strings';
+} from '../utils';
 
 const encoding = { encoding: 'utf-8' as BufferEncoding };
 

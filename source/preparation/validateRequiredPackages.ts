@@ -1,10 +1,10 @@
-import { exceptions } from './../utils/strings';
 import {
-  npxPackageAvailable,
   CribriBuildException,
+  exceptions,
+  npxPackageAvailable,
   success,
   warn
-} from './../utils/utils';
+} from './../utils';
 
 export const validateRequiredPackages = async (): Promise<void> => {
   const requiredPkgs = [

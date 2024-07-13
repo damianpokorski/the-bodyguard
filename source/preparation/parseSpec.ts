@@ -1,7 +1,6 @@
 import { existsSync, readFileSync } from 'fs';
 import { load } from 'js-yaml';
-import { exceptions } from '../utils/strings';
-import { InferredOptions, CribriBuildException } from '../utils/utils';
+import { CribriBuildException, exceptions, InferredOptions } from '../utils';
 
 interface OpenApiSpecComponent {
   schemas: Record<string, unknown>;
