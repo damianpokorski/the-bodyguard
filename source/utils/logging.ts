@@ -21,9 +21,9 @@ export const abort = (message: string, newline = true) => {
 
 export const rollbackLine = () => {
   if (Object.keys(process.stdout).includes('clearLine')) {
-    process?.stdout?.clearLine ?? process?.stdout?.clearLine(0);
+    process?.stdout?.clearLine(0);
   }
   if (Object.keys(process.stdout).includes('cursorTo')) {
-    process?.stdout?.cursorTo ?? process?.stdout?.cursorTo(0);
+    process?.stdout?.cursorTo(0);
   }
 };

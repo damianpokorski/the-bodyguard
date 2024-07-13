@@ -1,5 +1,5 @@
 import {
-  CribriBuildException,
+  BuildException,
   exceptions,
   npxPackageAvailable,
   success,
@@ -28,7 +28,7 @@ export const validateRequiredPackages = async (): Promise<void> => {
           .map((installedPkg) => installedPkg.pkg)
           .join(' ')} --save-dev`
       );
-      throw new CribriBuildException(exceptions.missingPackages);
+      throw new BuildException(exceptions.missingPackages);
     }
   }
 };

@@ -10,7 +10,7 @@ import {
 } from 'fs';
 import { join } from 'path';
 import {
-  CribriBuildException,
+  BuildException,
   InferredOptions,
   exceptions,
   log,
@@ -53,7 +53,7 @@ export const generateModels = async (opts: InferredOptions): Promise<void> => {
       {}
     );
     if (s.error) {
-      throw new CribriBuildException(
+      throw new BuildException(
         exceptions.failedToGenerateModelsUsingOpenAPIGenerator,
         s.error
       );
@@ -96,6 +96,6 @@ export const generateModels = async (opts: InferredOptions): Promise<void> => {
       success(filePath);
     }
   } catch (error) {
-    throw new CribriBuildException(exceptions.failedToGenerateModels, error);
+    throw new BuildException(exceptions.failedToGenerateModels, error);
   }
 };

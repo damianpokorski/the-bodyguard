@@ -1,6 +1,6 @@
 import { main } from '@main';
 import { exceptions } from '@utils/strings';
-import { Options, CribriBuildException } from '@utils/utils';
+import { Options } from '@utils/utils';
 import { cleanUpDir, exceptionBuilder } from '../unit.utils';
 
 const testDirs = [

@@ -4,7 +4,7 @@ import { default as ajvStandaloneCode } from 'ajv/dist/standalone';
 import * as esbuild from 'esbuild';
 import { readFileSync, readdirSync, writeFileSync } from 'fs';
 import {
-  CribriBuildException,
+  BuildException,
   InferredOptions,
   error,
   exceptions,
@@ -129,9 +129,6 @@ export const betterValidatorShort = (data, options = {}) => {
       success(`${opts.paths.validators}/${modelName}.ts`);
     }
   } catch (error) {
-    throw new CribriBuildException(
-      exceptions.failedToGenerateValidators,
-      error
-    );
+    throw new BuildException(exceptions.failedToGenerateValidators, error);
   }
 };
