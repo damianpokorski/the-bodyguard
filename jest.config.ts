@@ -1,6 +1,6 @@
+import { readFileSync } from 'fs';
 import type { JestConfigWithTsJest } from 'ts-jest';
 import { pathsToModuleNameMapper } from 'ts-jest';
-import { readFileSync } from 'fs';
 import ts from 'typescript';
 
 const { compilerOptions } = JSON.parse(
@@ -23,7 +23,10 @@ const config: JestConfigWithTsJest = {
       '^(\\./.*)\\.js$': '$1'
     }
   },
-  transformIgnorePatterns: []
+  transformIgnorePatterns: [],
+  coveragePathIgnorePatterns: ['tests/.builds.*'],
+  globalSetup: './tests/setup.ts',
+  globalTeardown: './tests/teardown.ts'
 };
 
 export default config;
