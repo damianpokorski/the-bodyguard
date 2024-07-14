@@ -1,6 +1,6 @@
 import { main } from '@main';
 import { exceptions } from '@utils/strings';
-import { Options, CribriBuildException } from '@utils/utils';
+import { Options } from '@utils/utils';
 import { cleanUpDir, exceptionBuilder } from '../unit.utils';
 
 const testDirs = [
@@ -64,7 +64,7 @@ describe('Petstore generation tests', () => {
     };
 
     // Act
-    const result = await main(opts);
+    await main(opts);
 
     // Assert
     expect(mocks.write).toMatchSnapshot();

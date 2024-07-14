@@ -3,7 +3,7 @@ import { Command } from 'commander';
 import { main } from './main';
 export * from './main';
 
-new Command('cribri')
+new Command('the-bodyguard')
   .requiredOption('--openapi <string>', 'Path to the OpenAPI specification')
   .requiredOption('--output <string>', 'Output path')
   .action(async (cmd: Options) => {

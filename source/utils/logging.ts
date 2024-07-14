@@ -20,10 +20,11 @@ export const abort = (message: string, newline = true) => {
 };
 
 export const rollbackLine = () => {
-  if (Object.keys(process.stdout).includes('clearLine')) {
-    process?.stdout?.clearLine ?? process?.stdout?.clearLine(0);
-  }
-  if (Object.keys(process.stdout).includes('cursorTo')) {
-    process?.stdout?.cursorTo ?? process?.stdout?.cursorTo(0);
+  try {
+    process?.stdout?.clearLine(0);
+    process?.stdout?.cursorTo(0);
+  } catch (e) {
+    // In non tty environments the fns above do not work as expected..
+    return;
   }
 };

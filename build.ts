@@ -1,12 +1,14 @@
 import * as esbuild from 'esbuild';
-import { mkdirSync, rmSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
 import { basename, join } from 'path';
 
 const outdir = './bin';
 const entryPoints = [`./source/main.ts`, './source/index.ts'];
 
-console.log('- Clearing our previous build\n');
-rmSync(outdir, { recursive: true });
+if (existsSync(outdir)) {
+  console.log('- Clearing our previous build\n');
+  rmSync(outdir, { recursive: true });
+}
 mkdirSync(outdir);
 
 for (const entrypoint of entryPoints) {
@@ -17,7 +19,7 @@ for (const entrypoint of entryPoints) {
     entryPoints: [entrypoint],
     bundle: true,
     outfile: join(outdir, basename(entrypoint).replace('.ts', '.js')),
-    minify: false,
+    minify: true,
     keepNames: true,
     treeShaking: true,
     target: 'es2020',

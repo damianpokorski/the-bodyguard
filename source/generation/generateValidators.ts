@@ -3,8 +3,9 @@ import addFormats from 'ajv-formats';
 import { default as ajvStandaloneCode } from 'ajv/dist/standalone';
 import * as esbuild from 'esbuild';
 import { readFileSync, readdirSync, writeFileSync } from 'fs';
+import { relative } from 'path';
 import {
-  CribriBuildException,
+  BuildException,
   InferredOptions,
   error,
   exceptions,
@@ -126,12 +127,11 @@ export const betterValidatorShort = (data, options = {}) => {
       );
 
       // Log progress
-      success(`${opts.paths.validators}/${modelName}.ts`);
+      success(
+        relative(process.cwd(), `${opts.paths.validators}/${modelName}.ts`)
+      );
     }
   } catch (error) {
-    throw new CribriBuildException(
-      exceptions.failedToGenerateValidators,
-      error
-    );
+    throw new BuildException(exceptions.failedToGenerateValidators, error);
   }
 };

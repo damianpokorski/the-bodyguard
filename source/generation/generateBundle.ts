@@ -3,7 +3,7 @@ import { cpSync, readFileSync, readdirSync, writeFileSync } from 'fs';
 import { spawnSync } from 'node:child_process';
 import { join } from 'path';
 import {
-  CribriBuildException,
+  BuildException,
   InferredOptions,
   defaultEncoding,
   exceptions,
@@ -21,15 +21,15 @@ export const generateBundle = async (opts: InferredOptions): Promise<void> => {
     // Initialize barrel file generation
     const barrel = [
       `
-        interface CribriValidator<T> {
+        interface Validator<T> {
             <T>(data: unknown): boolean
         };`,
 
-      `interface CribriValidatorWithErrors<T> {
+      `interface ValidatorWithErrors<T> {
     (data: unknown): [T | undefined, string[] | undefined]
 };
 
-interface CribriValidatorWithDetailedErrors<T> {
+interface ValidatorWithDetailedErrors<T> {
     (data: unknown): [T | undefined, {
         suggestion?: string;
         start: { line: number; column: number; offset: number };
@@ -39,11 +39,11 @@ interface CribriValidatorWithDetailedErrors<T> {
     }[] | undefined]
 };
 
-interface Cribri<T> {
+interface ModuleDefinition<T> {
     schema: any,
-    validator: CribriValidator<T>,
-    validatorWithErrors: CribriValidatorWithErrors<T>,
-    validatorWithDetailedErrors: CribriValidatorWithDetailedErrors<T>,
+    validator: Validator<T>,
+    validatorWithErrors: ValidatorWithErrors<T>,
+    validatorWithDetailedErrors: ValidatorWithDetailedErrors<T>,
 };
 ;`
     ];
@@ -73,8 +73,8 @@ interface Cribri<T> {
           `/* ${modelNameTitleCase} - AJV Validators */`,
           `import * as ${modelName}Module  from './validators/${validator}';`,
           `export const ${modelNameTitleCase}Validator = ${modelName}Module.${modelName}Validator;`,
-          `export const ${modelNameTitleCase}ValidatorWithErrors = ${modelName}Module.${modelName}ValidatorWithErrorsShort as unknown as CribriValidatorWithErrors<${modelNameTitleCase}>;`,
-          `export const ${modelNameTitleCase}ValidatorWithErrorsWithHints = ${modelName}Module.${modelName}ValidatorWithErrors as unknown as CribriValidatorWithDetailedErrors<${modelNameTitleCase}>;`,
+          `export const ${modelNameTitleCase}ValidatorWithErrors = ${modelName}Module.${modelName}ValidatorWithErrorsShort as unknown as ValidatorWithErrors<${modelNameTitleCase}>;`,
+          `export const ${modelNameTitleCase}ValidatorWithErrorsWithHints = ${modelName}Module.${modelName}ValidatorWithErrors as unknown as ValidatorWithDetailedErrors<${modelNameTitleCase}>;`,
           ``,
           `/* ${modelNameTitleCase} - JSON Schemas */`,
           `export const ${modelNameTitleCase}Schema = ${modelName}Module.${modelName}Schema;`,
@@ -106,7 +106,7 @@ interface Cribri<T> {
       {}
     );
     if (s.error || s.status !== 0) {
-      throw new CribriBuildException(
+      throw new BuildException(
         `${exceptions.failedToGenerateBundleDeclarations}`,
         s.error
       );
@@ -134,7 +134,7 @@ interface Cribri<T> {
       {}
     );
     if (e.error || e.status !== 0) {
-      throw new CribriBuildException(
+      throw new BuildException(
         `${exceptions.failedToGenerateBundleEsbuild}`,
         s.error
       );
@@ -144,9 +144,6 @@ interface Cribri<T> {
     rollbackLine();
     success('Bundled and minified (esbuild)');
   } catch (e) {
-    throw new CribriBuildException(
-      `${exceptions.failedToGenerateBundle} -2`,
-      e
-    );
+    throw new BuildException(`${exceptions.failedToGenerateBundle} -2`, e);
   }
 };

@@ -35,7 +35,7 @@ export const parseOptions = (input: Options): InferredOptions => ({
 
 export const defaultEncoding = { encoding: 'utf-8' as BufferEncoding };
 
-export class CribriBuildException extends Error {
+export class BuildException extends Error {
   constructor(
     msg?: string,
     private innerError?: Error | unknown
