@@ -1,6 +1,6 @@
 import { Resolver } from '@stoplight/json-ref-resolver';
 import { writeFileSync } from 'fs';
-import { join } from 'path';
+import { join, relative } from 'path';
 import { OpenApiSpec } from '../preparation/parseSpec';
 import { BuildException, InferredOptions, success } from '../utils';
 
@@ -24,7 +24,7 @@ export const extractSchemas = async (
       writeFileSync(resultSchemaPath, JSON.stringify(schema, undefined, 2), {
         encoding: 'utf-8'
       });
-      success(resultSchemaPath);
+      success(relative(process.cwd(), resultSchemaPath));
     }
   } catch (error) {
     throw new BuildException('Failed to extract schemas', error);

@@ -63,27 +63,27 @@ Extracting JSON Schemas...
 ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/schemas/order.json
+      "  [92m✔[39m tests/.builds.sample-generation/schemas/order.json
 ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/schemas/category.json
+      "  [92m✔[39m tests/.builds.sample-generation/schemas/category.json
 ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/schemas/user.json
+      "  [92m✔[39m tests/.builds.sample-generation/schemas/user.json
 ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/schemas/tag.json
+      "  [92m✔[39m tests/.builds.sample-generation/schemas/tag.json
 ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/schemas/pet.json
+      "  [92m✔[39m tests/.builds.sample-generation/schemas/pet.json
 ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/schemas/apiResponse.json
+      "  [92m✔[39m tests/.builds.sample-generation/schemas/apiResponse.json
 ",
     ],
     [
@@ -105,31 +105,31 @@ Generating Typescript models...
       "  - Updating imports & Saving",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/models/apiResponse.ts
+      "  [92m✔[39m tests/.builds.sample-generation/models/apiResponse.ts
 ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/models/category.ts
+      "  [92m✔[39m tests/.builds.sample-generation/models/category.ts
 ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/models/index.ts
+      "  [92m✔[39m tests/.builds.sample-generation/models/index.ts
 ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/models/order.ts
+      "  [92m✔[39m tests/.builds.sample-generation/models/order.ts
 ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/models/pet.ts
+      "  [92m✔[39m tests/.builds.sample-generation/models/pet.ts
 ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/models/tag.ts
+      "  [92m✔[39m tests/.builds.sample-generation/models/tag.ts
 ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/models/user.ts
+      "  [92m✔[39m tests/.builds.sample-generation/models/user.ts
 ",
     ],
     [
@@ -141,42 +141,42 @@ Generating AJV Standalone validators (with better-ajv-errors)...
       "  [92m✔[39m apiResponse - Generated... ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/validators/apiResponse.ts
+      "  [92m✔[39m tests/.builds.sample-generation/validators/apiResponse.ts
 ",
     ],
     [
       "  [92m✔[39m category - Generated... ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/validators/category.ts
+      "  [92m✔[39m tests/.builds.sample-generation/validators/category.ts
 ",
     ],
     [
       "  [92m✔[39m order - Generated... ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/validators/order.ts
+      "  [92m✔[39m tests/.builds.sample-generation/validators/order.ts
 ",
     ],
     [
       "  [92m✔[39m pet - Generated... ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/validators/pet.ts
+      "  [92m✔[39m tests/.builds.sample-generation/validators/pet.ts
 ",
     ],
     [
       "  [92m✔[39m tag - Generated... ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/validators/tag.ts
+      "  [92m✔[39m tests/.builds.sample-generation/validators/tag.ts
 ",
     ],
     [
       "  [92m✔[39m user - Generated... ",
     ],
     [
-      "  [92m✔[39m /nas/projects/harness/tests/.builds.sample-generation/validators/user.ts
+      "  [92m✔[39m tests/.builds.sample-generation/validators/user.ts
 ",
     ],
     [

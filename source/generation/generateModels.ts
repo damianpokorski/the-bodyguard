@@ -8,7 +8,7 @@ import {
   rmSync,
   writeFileSync
 } from 'fs';
-import { join } from 'path';
+import { join, relative } from 'path';
 import {
   BuildException,
   InferredOptions,
@@ -93,7 +93,7 @@ export const generateModels = async (opts: InferredOptions): Promise<void> => {
       }
       writeFileSync(filePath, fileContents, encoding);
       rollbackLine();
-      success(filePath);
+      success(relative(process.cwd(), filePath));
     }
   } catch (error) {
     throw new BuildException(exceptions.failedToGenerateModels, error);
