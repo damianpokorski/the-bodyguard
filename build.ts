@@ -19,7 +19,7 @@ for (const entrypoint of entryPoints) {
     entryPoints: [entrypoint],
     bundle: true,
     outfile: join(outdir, basename(entrypoint).replace('.ts', '.js')),
-    minify: false,
+    minify: true,
     keepNames: true,
     treeShaking: true,
     target: 'es2020',
