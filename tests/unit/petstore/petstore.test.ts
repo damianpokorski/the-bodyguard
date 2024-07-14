@@ -64,7 +64,7 @@ describe('Petstore generation tests', () => {
     };
 
     // Act
-    const result = await main(opts);
+    await main(opts);
 
     // Assert
     expect(mocks.write).toMatchSnapshot();
