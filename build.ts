@@ -1,12 +1,14 @@
 import * as esbuild from 'esbuild';
-import { mkdirSync, rmSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
 import { basename, join } from 'path';
 
 const outdir = './bin';
 const entryPoints = [`./source/main.ts`, './source/index.ts'];
 
-console.log('- Clearing our previous build\n');
-rmSync(outdir, { recursive: true });
+if (existsSync(outdir)) {
+  console.log('- Clearing our previous build\n');
+  rmSync(outdir, { recursive: true });
+}
 mkdirSync(outdir);
 
 for (const entrypoint of entryPoints) {
