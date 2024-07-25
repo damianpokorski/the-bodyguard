@@ -12,6 +12,16 @@ The core of the process is as follows:
 - Generate a set of standalone validators for each of the Schemas ([ajv](https://ajv.js.org/) is absolutely amazing, we also utilize [standlone](https://ajv.js.org/standalone.html))
 - Generate a single bundled and minified output, that can be inserted into any platform without relying on any dependencies ((esbuild)[https://esbuild.github.io/])
 
+## Installation
+
+![NPM Version](https://img.shields.io/npm/v/the-bodyguard)
+
+[NPM - the-bodyguard](https://www.npmjs.com/package/the-bodyguard)
+
+```bash
+npm i the-bodyguard --save-dev
+```
+
 ## The goals
 
 This package has been designed with a few key points in mind:
