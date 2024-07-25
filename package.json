@@ -1,6 +1,6 @@
 {
   "name": "the-bodyguard",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "description": "An opinionated microservice wrapper for rapid development based off OpenAPI documentation",
   "main": "bin/index.js",
   "scripts": {
