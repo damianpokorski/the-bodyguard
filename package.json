@@ -2,7 +2,7 @@
   "name": "the-bodyguard",
   "version": "0.0.1",
   "description": "An opinionated microservice wrapper for rapid development based off OpenAPI documentation",
-  "main": "bin/cli.js",
+  "main": "bin/index.js",
   "scripts": {
     "build": "ts-node build.ts",
     "lint:prettier": "prettier --config .prettierrc 'source/**/*.ts' --write",
@@ -14,7 +14,8 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:safe": "jest",
     "test:coverage": "npm run test -- --coverage",
-    "prepare": "husky"
+    "prepare": "husky",
+    "release": "semantic-release"
   },
   "author": "Damian Pokorski @damianpokorski",
   "license": "MIT",
@@ -23,6 +24,8 @@
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-angular": "^19.3.0",
     "@eslint/js": "^9.6.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^12.0.1",
     "@tsconfig/node22": "^22.0.0",
     "@types/cli-color": "^2.0.6",
     "@types/eslint__js": "^8.42.3",
