@@ -6,3 +6,4 @@ coverage
 tests/.builds*
 tmp
 bin
+.generated

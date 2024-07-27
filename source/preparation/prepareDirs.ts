@@ -8,9 +8,9 @@ export const prepareDirs = async (opts: InferredOptions) => {
   }
 
   // Create new dir structure
-  mkdirSync(opts.paths.main);
-  mkdirSync(opts.paths.models);
-  mkdirSync(opts.paths.schemas);
-  mkdirSync(opts.paths.validators);
-  mkdirSync(opts.paths.dist);
+  mkdirSync(opts.paths.main, { recursive: true });
+  mkdirSync(opts.paths.models, { recursive: true });
+  mkdirSync(opts.paths.schemas, { recursive: true });
+  mkdirSync(opts.paths.validators, { recursive: true });
+  mkdirSync(opts.paths.dist, { recursive: true });
 };

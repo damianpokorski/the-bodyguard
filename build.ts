@@ -1,5 +1,12 @@
 import * as esbuild from 'esbuild';
-import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
+import {
+  chmodSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync
+} from 'fs';
 import { basename, join } from 'path';
 
 const outdir = './bin';
@@ -31,6 +38,16 @@ for (const entrypoint of entryPoints) {
     mainFields: ['module', 'main']
   });
   writeFileSync(outfileMetadata, JSON.stringify(result.metafile));
+
+  // Add shebang to the index.js
+  if (entrypoint.includes('index.ts')) {
+    writeFileSync(
+      outfile,
+      '#!/usr/bin/env node\n\n' + readFileSync(outfile, { encoding: 'utf-8' }),
+      { encoding: 'utf-8' }
+    );
+    chmodSync(outfile, 0o777);
+  }
 
   const analytisResult = esbuild
     .analyzeMetafileSync(JSON.stringify(result.metafile))
