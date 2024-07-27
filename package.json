@@ -3,6 +3,7 @@
   "version": "0.0.7",
   "description": "An opinionated microservice wrapper for rapid development based off OpenAPI documentation",
   "main": "bin/index.js",
+  "bin": "bin/index.js",
   "scripts": {
     "build": "ts-node build.ts",
     "lint:prettier": "prettier --config .prettierrc 'source/**/*.ts' --write",
