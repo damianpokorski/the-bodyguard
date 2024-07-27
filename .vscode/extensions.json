@@ -3,6 +3,7 @@
         "firsttris.vscode-jest-runner",
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
-        "github.vscode-github-actions"
+        "github.vscode-github-actions",
+        "rangav.vscode-thunder-client"
     ]
 }
