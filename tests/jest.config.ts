@@ -11,19 +11,24 @@ const { compilerOptions } = JSON.parse(
     paths: ts.MapLike<string[]>;
   };
 };
+
 const config: JestConfigWithTsJest = {
-  testMatch: [`**/tests/**/*.test.ts`],
+  testMatch: [`<rootDir>/**/*.test.ts`],
   preset: 'ts-jest',
   roots: ['<rootDir>'],
   modulePaths: [compilerOptions.baseUrl],
   moduleNameMapper: {
-    ...pathsToModuleNameMapper(compilerOptions.paths),
+    ...pathsToModuleNameMapper(compilerOptions.paths, {
+      prefix: process.cwd()
+    }),
     ...{
       '^(\\./.*)\\.js$': '$1'
     }
   },
   transformIgnorePatterns: [],
-  globalSetup: './tests/setup.ts'
+  coveragePathIgnorePatterns: ['.builds.*'],
+  globalSetup: './setup.ts',
+  globalTeardown: './teardown.ts'
 };
 
 export default config;

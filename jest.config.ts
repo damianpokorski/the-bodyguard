@@ -1,32 +1,7 @@
-import { readFileSync } from 'fs';
-import type { JestConfigWithTsJest } from 'ts-jest';
-import { pathsToModuleNameMapper } from 'ts-jest';
-import ts from 'typescript';
+import { JestConfigWithTsJest } from 'ts-jest';
 
-const { compilerOptions } = JSON.parse(
-  readFileSync('./tsconfig.json', { encoding: 'utf-8' })
-) as {
-  compilerOptions: {
-    baseUrl: string;
-    paths: ts.MapLike<string[]>;
-  };
-};
 const config: JestConfigWithTsJest = {
-  verbose: true,
-  testMatch: [`<rootDir>/tests/**/*.test.ts`],
-  preset: 'ts-jest',
-  roots: ['<rootDir>'],
-  modulePaths: [compilerOptions.baseUrl],
-  moduleNameMapper: {
-    ...pathsToModuleNameMapper(compilerOptions.paths),
-    ...{
-      '^(\\./.*)\\.js$': '$1'
-    }
-  },
-  transformIgnorePatterns: [],
-  coveragePathIgnorePatterns: ['tests/.builds.*'],
-  globalSetup: './tests/setup.ts',
-  globalTeardown: './tests/teardown.ts'
+  projects: ['<rootDir>/tests', '<rootDir>/examples/express']
 };
 
 export default config;
