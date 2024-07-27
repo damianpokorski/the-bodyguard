@@ -13,7 +13,7 @@ const { compilerOptions } = JSON.parse(
 };
 const config: JestConfigWithTsJest = {
   verbose: true,
-  testMatch: [`<rootDir>/tests/**/*.test.ts`],
+  testMatch: [`**/tests/**/*.test.ts`],
   preset: 'ts-jest',
   roots: ['<rootDir>'],
   modulePaths: [compilerOptions.baseUrl],
@@ -24,9 +24,7 @@ const config: JestConfigWithTsJest = {
     }
   },
   transformIgnorePatterns: [],
-  coveragePathIgnorePatterns: ['tests/.builds.*'],
-  globalSetup: './tests/setup.ts',
-  globalTeardown: './tests/teardown.ts'
+  globalSetup: './tests/setup.ts'
 };
 
 export default config;
