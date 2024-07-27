@@ -2,10 +2,20 @@ import { spawnSync } from 'child_process';
 
 module.exports = () => {
   console.log('');
-  console.log('- setup.ts - preparing a bundle for validation testing');
-  const testValidator = spawnSync('npm', ['run', 'build:validation']);
+  console.log(
+    '- examples/express/tests/setup.ts - preparing a bundle for validation testing'
+  );
+  const testValidator = spawnSync('npm', ['run', 'build:validation'], {
+    cwd: __dirname
+  });
+  console.log({
+    cwd: process.cwd,
+    testValidator,
+    output: testValidator.output.toString(),
+    err: testValidator.stderr.toString()
+  });
   if (testValidator.error) {
     throw new Error('Failed to prebuild petstore validators');
   }
-  console.log('- setup.ts - preparation complete');
+  console.log('- examples/express/tests/setup.ts - preparation complete');
 };

@@ -17,6 +17,16 @@ jobs:
             examples/express/package-lock.json
 
       - run: npm ci
+        working-directory: .
+
       - run: npm run build
+        working-directory: .
+
+      - run: npm ci
+        working-directory: ./examples/express
+
       - run: npm run lint
+        working-directory: .
+
       - run: npm run test
+        working-directory: .

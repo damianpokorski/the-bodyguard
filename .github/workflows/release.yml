@@ -17,14 +17,27 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.2.0'
+          node-version-file: '.nvmrc'
           cache: npm
-          cache-dependency-path: 'package-lock.json'
+          cache-dependency-path: |
+            package-lock.json
+            examples/express/package-lock.json
 
       - run: npm ci
-      - run: npm run lint
-      - run: npm run test
+        working-directory: .
+
       - run: npm run build
+        working-directory: .
+
+      - run: npm ci
+        working-directory: ./examples/express
+
+      - run: npm run lint
+        working-directory: .
+
+      - run: npm run test
+        working-directory: .
+
       - run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
