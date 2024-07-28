@@ -1,4 +1,4 @@
-import { Options } from '@utils/utils';
+import { Options } from '@utils/parseOptions';
 import { Command } from 'commander';
 import { main } from './main';
 export * from './main';
