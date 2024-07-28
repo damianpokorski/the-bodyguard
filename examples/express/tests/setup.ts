@@ -8,12 +8,6 @@ module.exports = () => {
   const testValidator = spawnSync('npm', ['run', 'build:validation'], {
     cwd: __dirname
   });
-  console.log({
-    cwd: process.cwd,
-    testValidator,
-    output: testValidator.output.toString(),
-    err: testValidator.stderr.toString()
-  });
   if (testValidator.error) {
     throw new Error('Failed to prebuild petstore validators');
   }

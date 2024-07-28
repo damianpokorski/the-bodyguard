@@ -10,8 +10,8 @@
     "lint": "npx eslint source *.ts",
     "lint:fix": "npm run lint -- --fix",
     "cli": "ts-node source/index.ts",
-    "start:petstore": "rm -rf tmp && mkdir -p tmp && npm run cli -- --openapi tests/unit/petstore/petstore.yaml --output ./tmp/petstore-dev",
-    "start:petstore:build": "npm run build && rm -rf tmp && mkdir -p tmp && node bin/index.js --openapi tests/unit/petstore/petstore.yaml --output ./tmp/petstore-dev",
+    "start:petstore": "npm run cli -- --openapi tests/unit/petstore/petstore.yaml --output ./tmp/petstore-dev",
+    "start:petstore:build": "npm run build && node bin/index.js --openapi tests/unit/petstore/petstore.yaml --output ./tmp/petstore-dev",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:safe": "jest",
     "test:coverage": "npm run test -- --coverage",
@@ -56,6 +56,7 @@
     "cli-color": "^2.0.4",
     "commander": "^12.1.0",
     "esbuild": "^0.21.5",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "md5-file": "^5.0.0"
   }
 }

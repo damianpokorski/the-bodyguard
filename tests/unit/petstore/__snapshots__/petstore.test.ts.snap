@@ -4,6 +4,14 @@ exports[`Petstore generation tests Can generate OpenAPI using petstore 1`] = `
 [MockFunction] {
   "calls": [
     [
+      "Looking for past checksums..
+",
+    ],
+    [
+      "  [33m![39m Failed to find matchin checksums.. generating.
+",
+    ],
+    [
       "Checking whether the required NPM packages are installed...
 ",
     ],
@@ -26,6 +34,14 @@ exports[`Petstore generation tests Can generate OpenAPI using petstore 1`] = `
     [
       "
 Starting...
+",
+    ],
+    [
+      "Looking for past checksums..
+",
+    ],
+    [
+      "  [33m![39m Failed to find matchin checksums.. generating.
 ",
     ],
     [
@@ -226,8 +242,33 @@ Compiling the final bundle...
       "  [92m✔[39m Bundled and minified (esbuild)
 ",
     ],
+    [
+      "
+Generating checksums...
+",
+    ],
   ],
   "results": [
+    {
+      "type": "return",
+      "value": undefined,
+    },
+    {
+      "type": "return",
+      "value": undefined,
+    },
+    {
+      "type": "return",
+      "value": undefined,
+    },
+    {
+      "type": "return",
+      "value": undefined,
+    },
+    {
+      "type": "return",
+      "value": undefined,
+    },
     {
       "type": "return",
       "value": undefined,
