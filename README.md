@@ -2,7 +2,7 @@
 
 A an opinionated request body validation generator - and it achieves that by relying on an existing set of tools rather than re-inventing the wheel. Just wrapping them around in a convenient plug and play package.
 
-![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) This if very much under active development & not even production ready for time being. ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png)
+![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) _This package is very much under active development & not production ready for time being._ ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png)
 
 The core of the process is as follows:
 

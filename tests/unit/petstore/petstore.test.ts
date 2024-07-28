@@ -1,6 +1,6 @@
 import { main } from '@main';
+import { Options } from '@utils/parseOptions';
 import { exceptions } from '@utils/strings';
-import { Options } from '@utils/utils';
 import { cleanUpDir, exceptionBuilder } from '../unit.utils';
 
 const testDirs = [
