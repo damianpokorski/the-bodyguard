@@ -38,6 +38,9 @@ jobs:
       - run: npm run test
         working-directory: .
 
+      # Exclude examples from being published
+      - run: rm -rf examples
+
       - run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
