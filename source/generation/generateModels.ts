@@ -1,13 +1,7 @@
 // import { camelCase } from 'change-case';
-import { spawnSync } from 'child_process';
-import {
-  cpSync,
-  readFileSync,
-  readdirSync,
-  renameSync,
-  rmSync,
-  writeFileSync
-} from 'fs';
+import { readFileSync, readdirSync, renameSync, writeFileSync } from 'fs';
+import { JSONSchema4 } from 'json-schema';
+import { compile } from 'json-schema-to-typescript';
 import { join, relative } from 'path';
 import {
   BuildException,
@@ -34,36 +28,24 @@ const camelCase = (string: string) => {
 
 export const generateModels = async (opts: InferredOptions): Promise<void> => {
   try {
-    // OpenAPI Generator - save into tmp dir
-    log(`  - OpenAPI Generator CLI - (Typescript Axios)`, false);
-    const tmpModelPackageDir = `openapi-safety-net-models`;
-    const s = spawnSync(
-      `npx`,
-      [
-        `openapi-generator-cli`,
-        `generate`,
-        `--input-spec="${opts.openapi}"`,
-        `--generator-name="typescript-axios"`,
-        `--output="${opts.paths.tmp}"`,
-        `--enable-post-process-file`,
-        `--api-package="openapi-safety-net-api"`,
-        `--model-package="${tmpModelPackageDir}"`,
-        `--additional-properties="enumPropertyNaming=camelCase,supportsES6=true,stringEnums=true,nullSafeAdditionalProps=true,withSeparateModelsAndApi=true,paramNaming=camelCase"`
-      ],
-      {}
-    );
-    if (s.error) {
-      throw new BuildException(
-        exceptions.failedToGenerateModelsUsingOpenAPIGenerator,
-        s.error
+    log(`  - JSON Schema to typescript conversion`, false);
+    for (const file of readdirSync(opts.paths.schemas)) {
+      const modelName = file.replace('.json', '');
+      const path = join(opts.paths.schemas, file);
+      const schema = JSON.parse(
+        readFileSync(path, {
+          encoding: 'utf-8'
+        })
       );
+      schema['title'] = modelName;
+      const compiled = await compile(schema as JSONSchema4, modelName, {
+        format: false
+      });
+      writeFileSync(join(opts.paths.models, `${modelName}.ts`), compiled);
     }
-    cpSync(join(opts.paths.tmp, tmpModelPackageDir), `${opts.paths.models}`, {
-      recursive: true
-    });
-    rmSync(opts.paths.tmp, { force: true, recursive: true });
+
     rollbackLine();
-    success('Models generated successfully using - openapi-generator-cli');
+    success('Models generated successfully using - json-schema-to-typescript');
 
     // Ensure consistent naming - swap any snake-case filenames & model names into camelcases
     log(`  - Ensuring camel case naming convention`, false);

@@ -31,8 +31,8 @@ for (const entrypoint of entryPoints) {
     treeShaking: true,
     target: 'es2020',
     format: 'cjs',
+    external: ['esbuild', 'json-schema-to-typescript'],
     platform: 'node',
-    external: ['esbuild'],
     sourcemap: true,
     metafile: true,
     mainFields: ['module', 'main']
