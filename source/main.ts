@@ -5,12 +5,17 @@ import { generateValidators } from './generation/generateValidators';
 import { parseSpec } from './preparation/parseSpec';
 import { prepareDirs } from './preparation/prepareDirs';
 import { validateRequiredPackages } from './preparation/validateRequiredPackages';
-import { Options, log, parseOptions, success } from './utils';
+import { Options, log, parseOptions, success, warn } from './utils';
+import { generateChecksumsFile, validateChecksums } from './utils/checksums';
 
 export const main = async (config: Options) => {
   const opts = parseOptions(config);
 
-  //
+  if (await validateChecksums(opts)) {
+    return;
+  }
+  warn(`Failed to find matchin checksums.. generating.`);
+
   log(`Checking whether the required NPM packages are installed...`);
   await validateRequiredPackages();
 
@@ -35,4 +40,7 @@ export const main = async (config: Options) => {
   // Generate bundle
   log(`\nCompiling the final bundle...`);
   await generateBundle(opts);
+
+  log(`\nGenerating checksums...`);
+  await generateChecksumsFile(opts);
 };

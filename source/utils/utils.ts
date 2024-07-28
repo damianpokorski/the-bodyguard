@@ -1,11 +1,15 @@
 import { spawnSync } from 'node:child_process';
 import { join } from 'path';
 
+// Base options
 export interface Options {
   openapi: string;
   output: string;
+  // flags
+  force?: boolean;
 }
 
+// Generated options
 export interface InferredOptions extends Options {
   paths: {
     main: string;
@@ -17,6 +21,7 @@ export interface InferredOptions extends Options {
     validators: string;
     dist: string;
   };
+  checksums: string;
 }
 
 export const parseOptions = (input: Options): InferredOptions => ({
@@ -30,7 +35,8 @@ export const parseOptions = (input: Options): InferredOptions => ({
     validators: join(process.cwd(), input.output, 'validators'),
     dist: join(process.cwd(), input.output, 'dist'),
     tmp: join(process.cwd(), input.output, 'tmp')
-  }
+  },
+  checksums: join(process.cwd(), input.output, 'dist', 'checksums.json')
 });
 
 export const defaultEncoding = { encoding: 'utf-8' as BufferEncoding };
