@@ -32,10 +32,6 @@ exports[`Petstore generation tests Can generate OpenAPI using petstore 1`] = `
 ",
     ],
     [
-      "  [92m✔[39m @openapitools/openapi-generator-cli
-",
-    ],
-    [
       "  [92m✔[39m typescript
 ",
     ],
@@ -50,10 +46,6 @@ Starting...
     ],
     [
       "  [92m✔[39m esbuild
-",
-    ],
-    [
-      "  [92m✔[39m @openapitools/openapi-generator-cli
 ",
     ],
     [
@@ -108,10 +100,10 @@ Generating Typescript models...
 ",
     ],
     [
-      "  - OpenAPI Generator CLI - (Typescript Axios)",
+      "  - JSON Schema to typescript conversion",
     ],
     [
-      "  [92m✔[39m Models generated successfully using - openapi-generator-cli
+      "  [92m✔[39m Models generated successfully using - json-schema-to-typescript
 ",
     ],
     [
@@ -126,10 +118,6 @@ Generating Typescript models...
     ],
     [
       "  [92m✔[39m tests/.builds.sample-generation/models/category.ts
-",
-    ],
-    [
-      "  [92m✔[39m tests/.builds.sample-generation/models/index.ts
 ",
     ],
     [
@@ -249,18 +237,6 @@ Generating checksums...
     ],
   ],
   "results": [
-    {
-      "type": "return",
-      "value": undefined,
-    },
-    {
-      "type": "return",
-      "value": undefined,
-    },
-    {
-      "type": "return",
-      "value": undefined,
-    },
     {
       "type": "return",
       "value": undefined,
