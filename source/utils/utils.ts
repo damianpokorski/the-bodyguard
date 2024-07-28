@@ -1,3 +1,4 @@
+import { getInstalledPath } from 'get-installed-path';
 import { spawnSync } from 'node:child_process';
 import { join } from 'path';
 
@@ -67,11 +68,15 @@ export const exec = async (
 };
 
 export const npxPackageAvailable = async (packageName: string) => {
-  // Try local package search first
-  let [success] = await exec(`npm`, 'ls', packageName, '--depth=0');
-  if (!success) {
-    // Try global packages next
-    [success] = await exec(`npm`, 'ls', packageName, '--global');
+  try {
+    await getInstalledPath(packageName);
+    return true;
+  } catch (packageNotAvailableGlobally) {
+    try {
+      await getInstalledPath(packageName, { local: true });
+      return true;
+    } catch (packageNotAvailableLocally) {
+      return false;
+    }
   }
-  return success;
 };
