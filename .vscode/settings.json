@@ -1,24 +1,20 @@
 {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
-    "editor.formatOnType": false,
-    "editor.codeActionsOnSave": {
-        "source.addMissingImports.ts": "never",
-        "source.fixAll.eslint": "always",
-        "source.fixAll.ts": "always",
-        "source.fixAll": "always",
-        "source.organizeImports": "always",
-        "source.removeUnused.ts": "never",
-        "source.removeUnused": "never",
-        "source.sortImports": "always",
-    },
     "jestrunner.jestCommand": "npm run test --",
     "search.useIgnoreFiles": true,
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
     "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": false,
+        "editor.codeActionsOnSave": {
+            "source.addMissingImports.ts": "never",
+            "source.fixAll.eslint": "always",
+            "source.fixAll.ts": "always",
+            "source.fixAll": "always",
+            "source.organizeImports": "always",
+            "source.removeUnused.ts": "never",
+            "source.removeUnused": "never",
+            "source.sortImports": "always",
+        },
     },
 }
