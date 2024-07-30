@@ -31,10 +31,10 @@ for (const entrypoint of entryPoints) {
     treeShaking: true,
     target: 'es2020',
     format: 'cjs',
-    external: ['esbuild', 'json-schema-to-typescript'],
     platform: 'node',
     sourcemap: true,
     metafile: true,
+    external: ['esbuild', 'json-schema-to-typescript'],
     mainFields: ['module', 'main']
   });
   writeFileSync(outfileMetadata, JSON.stringify(result.metafile));
