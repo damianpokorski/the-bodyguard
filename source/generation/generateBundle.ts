@@ -1,4 +1,4 @@
-// import * as esbuild from 'esbuild';
+import * as esbuild from 'esbuild';
 import { cpSync, readFileSync, readdirSync, writeFileSync } from 'fs';
 import { spawnSync } from 'node:child_process';
 import { join } from 'path';
@@ -117,26 +117,22 @@ interface ModuleDefinition<T> {
     // Minify
     log(`Bundling & minifying... (esbuild / commonjs)`, false);
 
-    const e = spawnSync(
-      `npx`,
-      [
-        `esbuild`,
-        `--bundle`,
-        // `--outfile=${join(opts.paths.dist, `index.cjs.js`)}`,
-        `--outfile=${join(opts.paths.dist, `index.js`)}`,
-        `--minify`,
-        `--keep-names`,
-        `--tree-shaking`,
-        `--target=es2020`,
-        `--format=cjs`,
-        opts.paths.barrel
-      ],
-      {}
-    );
-    if (e.error || e.status !== 0) {
+    const result = esbuild.buildSync({
+      bundle: true,
+      outfile: join(opts.paths.dist, `index.js`),
+      minify: true,
+      keepNames: true,
+      treeShaking: true,
+      target: 'es2020',
+      format: 'cjs',
+      entryPoints: [opts.paths.barrel],
+      sourcemap: opts.sourcemaps
+    });
+
+    if (result.errors && result.errors.length > 0) {
       throw new BuildException(
-        `${exceptions.failedToGenerateBundleEsbuild}`,
-        s.error
+        exceptions.failedToGenerateBundleEsbuild,
+        result.errors
       );
     }
 
