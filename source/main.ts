@@ -14,7 +14,7 @@ export const main = async (config: Options) => {
   if (await validateChecksums(opts)) {
     return;
   }
-  warn(`Failed to find matchin checksums.. generating.`);
+  warn(`Failed to find matching checksums.. generating.`);
 
   log(`Checking whether the required NPM packages are installed...`);
   await validateRequiredPackages();

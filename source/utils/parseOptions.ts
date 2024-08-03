@@ -6,6 +6,7 @@ export interface Options {
   output: string;
   // flags
   force?: boolean;
+  sourcemaps?: boolean;
 }
 
 // Generated options
