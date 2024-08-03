@@ -8,3 +8,4 @@ tmp
 bin
 .generated
 examples/express/node_modules
+examples/azure-functions/node_modules
