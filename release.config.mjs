@@ -3,15 +3,18 @@ export default {
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
-    '@semantic-release/npm',
     [
-      '@semantic-release/git',
+      '@semantic-release/changelog',
       {
-        assets: [],
-        message:
-          'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+        changelogFile: 'CHANGELOG.md'
       }
     ],
-    '@semantic-release/github'
+    '@semantic-release/npm',
+    [
+      '@semantic-release/github',
+      {
+        assets: [{ path: 'CHANGELOG.md', label: 'Changelog' }]
+      }
+    ]
   ]
 };

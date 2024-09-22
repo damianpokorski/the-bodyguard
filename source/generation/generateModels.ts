@@ -1,4 +1,3 @@
-// import { camelCase } from 'change-case';
 import { readFileSync, readdirSync, renameSync, writeFileSync } from 'fs';
 import { JSONSchema4 } from 'json-schema';
 import { compile } from 'json-schema-to-typescript';

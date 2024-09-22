@@ -28,9 +28,12 @@ jobs:
 
       - run: npm run build
         working-directory: .
-
+        
       - run: npm ci
         working-directory: ./examples/express
+
+      - run: npm ci
+        working-directory: ./examples/azure-functions
 
       - run: npm run lint
         working-directory: .
