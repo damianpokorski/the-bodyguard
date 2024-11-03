@@ -12,6 +12,18 @@ The core of the process is as follows:
 - Generate a set of standalone validators for each of the Schemas ([ajv](https://ajv.js.org/) is absolutely amazing, we also utilize [standlone](https://ajv.js.org/standalone.html))
 - Generate a single bundled and minified output, that can be inserted into any platform without relying on any dependencies ((esbuild)[https://esbuild.github.io/])
 
+```mermaid
+---
+title: The process
+---
+flowchart LR
+    A[OpenAPI Validation<br>**js-yaml**]  --> B
+    B[JSON Schema extraction<br>**json-ref-resolver** ] --> C
+    C[TS Model Generation<br>**json-schema-to-typescript**] --> D
+    D[Validator Generation<br>AJV **Standalone**] --> E
+    E[Compilation<br> **esbuild**]
+```
+
 ## The goals
 
 This package has been designed with a few key points in mind:
@@ -24,11 +36,11 @@ This package has been designed with a few key points in mind:
 
 **We should have a platform agnostic result**
 
-- Leverage type generation as much as possible to minimize drift between documentation and code. Ideally I would want to just treat generated validators as a dependency, & not have to worry about validating their code. With this generator you get all of the relevant declarions, but final bundle is just a common.js import - in a single file. Bundled, tree-shaken & minified (sourcemaps are optional)
+- Leverage type generation as much as possible to minimize drift between documentation and code. Ideally I would want to just treat generated validators as a dependency, & not have to worry about validating their code. With this utility you get all of the relevant declarations, but final bundle is just a common.js import - in a single file. Bundled, tree-shaken & minified (sourcemaps are optional)
 
-- Generates a fast authentication layer that's immune to cold start issues (i.e. processing a complex json schema can take precious milliseconds, doing it on repeat - on FaaS infrastructure is quite wasteful.. ) - we can sidestep that with ajv standalone & esbuild.
+- Generates a fast authentication layer that's immune to cold start issues - processing a complex json schema can take precious milliseconds, doing it on repeat - on FaaS infrastructure is quite wasteful.. - we can sidestep that with ajv standalone & esbuild, to reduce the impact.
 
-- Error output should be as straightfoward and focus on the actual errors, no custom object, random exceptions being thrown unexpectedly etc. A few different variations should be available, whether we just need a `true/false` or something a bit more verbose.
+- Error output should be as straightfoward and focus on the actual errors, no custom objects, random exceptions being thrown unexpectedly etc. A few different variations should be available, whether we just need a `true/false` or something a bit more verbose.
 
 
 ## Installation

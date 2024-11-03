@@ -13,7 +13,7 @@ export default {
     [
       '@semantic-release/github',
       {
-        assets: [{ path: 'CHANGELOG.md', label: 'Changelog' }]
+        assets: [{ path: 'CHANGELOG.md', label: 'CHANGELOG.md' }]
       }
     ]
   ]

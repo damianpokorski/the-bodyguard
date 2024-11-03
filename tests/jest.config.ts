@@ -26,6 +26,11 @@ const config: JestConfigWithTsJest = {
     }
   },
   transformIgnorePatterns: [],
+  collectCoverageFrom: [
+    '**/*.{ts,tsx}',
+    '!**/node_modules/**',
+    '!**/vendor/**'
+  ],
   coveragePathIgnorePatterns: ['.builds.*'],
   globalSetup: './setup.ts',
   globalTeardown: './teardown.ts'

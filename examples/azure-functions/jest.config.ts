@@ -23,6 +23,7 @@ const config: JestConfigWithTsJest = {
     }
   },
   transformIgnorePatterns: [],
+  coveragePathIgnorePatterns: ['.api/*'],
   globalSetup: './tests/setup.ts'
 };
 

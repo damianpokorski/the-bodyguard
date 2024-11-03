@@ -4,6 +4,7 @@
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
         "github.vscode-github-actions",
-        "rangav.vscode-thunder-client"
+        "rangav.vscode-thunder-client",
+        "bierner.markdown-mermaid"
     ]
 }

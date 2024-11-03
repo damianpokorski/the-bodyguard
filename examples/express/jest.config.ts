@@ -22,6 +22,7 @@ const config: JestConfigWithTsJest = {
       '^(\\./.*)\\.js$': '$1'
     }
   },
+  coveragePathIgnorePatterns: ['.generated/*'],
   transformIgnorePatterns: [],
   globalSetup: './tests/setup.ts'
 };
