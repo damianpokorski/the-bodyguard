@@ -5,7 +5,7 @@ import { cleanUpDir, exceptionBuilder } from '../unit.utils';
 
 const testDirs = [
   './tests/.builds.invalid-file-path',
-  './tests/.builds.sample-generation'
+  './tests/.builds.sample-generation',
 ];
 
 describe('Petstore generation tests', () => {
@@ -22,7 +22,7 @@ describe('Petstore generation tests', () => {
     cursorTo: jest
       .spyOn(process.stdout, 'cursorTo')
       .mockImplementation(jest.fn()),
-    write: jest.spyOn(process.stdout, 'write').mockImplementation(jest.fn())
+    write: jest.spyOn(process.stdout, 'write').mockImplementation(jest.fn()),
   };
 
   // Cleaning up temporarary dirs, before and after each run
@@ -39,7 +39,7 @@ describe('Petstore generation tests', () => {
       // Arrange
       const opts: Options = {
         openapi: './invalid-file.yaml',
-        output: testDirs[0]
+        output: testDirs[0],
       };
 
       // Act
@@ -50,8 +50,8 @@ describe('Petstore generation tests', () => {
         exceptionBuilder([
           exceptions.invalidOpenApiFile,
           exceptions.openApiFileDoesNotExist,
-          opts.openapi
-        ])
+          opts.openapi,
+        ]),
       );
     });
   });
@@ -60,7 +60,7 @@ describe('Petstore generation tests', () => {
     // Arrange
     const opts: Options = {
       openapi: 'tests/unit/petstore/petstore.yaml',
-      output: testDirs[1]
+      output: testDirs[1],
     };
 
     // Act

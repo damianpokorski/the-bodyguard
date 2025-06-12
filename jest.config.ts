@@ -4,8 +4,8 @@ const config: JestConfigWithTsJest = {
   projects: [
     '<rootDir>/tests',
     '<rootDir>/examples/azure-functions',
-    '<rootDir>/examples/express'
-  ]
+    '<rootDir>/examples/express',
+  ],
 };
 
 export default config;

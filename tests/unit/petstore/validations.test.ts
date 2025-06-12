@@ -18,7 +18,7 @@ import {
   TagValidatorWithErrors,
   UserSchema,
   UserValidator,
-  UserValidatorWithErrors
+  UserValidatorWithErrors,
 } from './../../.builds.petstore-output/dist';
 
 describe.each`
@@ -39,7 +39,7 @@ describe.each`
     `Validator rejects unexpected value of %s`,
     (value) => {
       expect(validator(value)).toEqual(false);
-    }
+    },
   );
 
   it.each(invalidValues)(
@@ -47,7 +47,7 @@ describe.each`
     (value) => {
       const [_, errors] = validatorWithErrors(value);
       expect((errors as string[]).length).toBeGreaterThan(0);
-    }
+    },
   );
 });
 
@@ -67,9 +67,9 @@ describe('Lab rat tests', () => {
     // Arrange
     const labRat = {
       name: {
-        firstName: 'Bobby'
+        firstName: 'Bobby',
       },
-      photoUrls: -167
+      photoUrls: -167,
     };
 
     // Act
@@ -82,7 +82,7 @@ describe('Lab rat tests', () => {
     // Arrange
     const labRat = {
       name: 'Bobby',
-      photoUrls: ['https://bobbyspictures/1.png']
+      photoUrls: ['https://bobbyspictures/1.png'],
     } as unknown as Pet;
 
     // Act

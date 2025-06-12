@@ -4,12 +4,12 @@ const ignoreMsg = (msg: string, substr: string[]) =>
 jest
   .spyOn(console, 'warn')
   .mockImplementation((arg) =>
-    ignoreMsg(arg, ['"@azure/functions" package', 'test mode'])
+    ignoreMsg(arg, ['"@azure/functions" package', 'test mode']),
   );
 jest
   .spyOn(console, 'info')
   .mockImplementation((arg) =>
-    ignoreMsg(arg, ['"@azure/functions" package', 'test mode'])
+    ignoreMsg(arg, ['"@azure/functions" package', 'test mode']),
   );
 
 // Import
@@ -17,25 +17,25 @@ import {
   HttpHandler,
   HttpRequest,
   HttpResponseInit,
-  InvocationContext
+  InvocationContext,
 } from '@azure/functions';
 import {
   addPetHandler,
   createCategoryHandler,
-  createUserHandler
+  createUserHandler,
 } from '../index';
 
 // Util functions
 const useHandler = async (handler: HttpHandler, body: unknown) => {
   const context = new InvocationContext({
-    functionName: 'test-function-name'
+    functionName: 'test-function-name',
   });
   const request = new HttpRequest({
     url: 'http://localhost/test-path',
     method: 'POST',
     body: {
-      string: JSON.stringify(body)
-    }
+      string: JSON.stringify(body),
+    },
   });
   return (await handler(request, context)) as HttpResponseInit;
 };
@@ -50,7 +50,7 @@ describe('Azure example tests', () => {
       // Act
       const { jsonBody: response, status } = await useHandler(
         addPetHandler,
-        invalidBody
+        invalidBody,
       );
 
       // Assert
@@ -61,13 +61,13 @@ describe('Azure example tests', () => {
       // Arrange
       const validPetRequestBody = {
         name: 'Bobby',
-        photoUrls: ['https://bobbies.pics/1.jpg']
+        photoUrls: ['https://bobbies.pics/1.jpg'],
       };
 
       // Act
       const { jsonBody: response, status } = await await useHandler(
         addPetHandler,
-        validPetRequestBody
+        validPetRequestBody,
       );
 
       // Assert
@@ -83,13 +83,13 @@ describe('Azure example tests', () => {
         username: null,
         firstName: 17,
         lastName: false,
-        email: undefined
+        email: undefined,
       };
 
       // Act
       const { jsonBody: response, status } = await await useHandler(
         createUserHandler,
-        invalidUserBody
+        invalidUserBody,
       );
 
       // Assert
@@ -100,8 +100,8 @@ describe('Azure example tests', () => {
           "'id' property type must be integer",
           "'username' property type must be string",
           "'firstName' property type must be string",
-          "'lastName' property type must be string"
-        ]
+          "'lastName' property type must be string",
+        ],
       });
     });
     it('Succeeds as expected', async () => {
@@ -110,20 +110,20 @@ describe('Azure example tests', () => {
         id: 1234091,
         username: 'bobbieg',
         firstName: 'bob',
-        lastName: 'g'
+        lastName: 'g',
       };
 
       // Act
       const { jsonBody: response, status } = await await useHandler(
         createUserHandler,
-        validRequestBody
+        validRequestBody,
       );
 
       // Assert
       expect(status).toEqual(200);
       expect(response).toEqual({
         success: true,
-        user: validRequestBody
+        user: validRequestBody,
       });
     });
   });
@@ -133,13 +133,13 @@ describe('Azure example tests', () => {
       // Arrange
       const invalidBody = {
         id: 'hello',
-        name: ')(!"*£&)!("*£&!)("£_INVALID_REGEX'
+        name: ')(!"*£&)!("*£&!)("£_INVALID_REGEX',
       };
 
       // Act
       const { jsonBody: response, status } = await useHandler(
         createCategoryHandler,
-        invalidBody
+        invalidBody,
       );
 
       // Assert
@@ -151,39 +151,39 @@ describe('Azure example tests', () => {
           properties: {
             id: {
               format: 'int64',
-              type: 'integer'
+              type: 'integer',
             },
             name: {
               pattern: '^[a-zA-Z0-9]+[a-zA-Z0-9\\.\\-_]*[a-zA-Z0-9]+$',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           title: 'Pet category',
           type: 'object',
           xml: {
-            name: 'Category'
-          }
-        }
+            name: 'Category',
+          },
+        },
       });
     });
     it('Succeeds as expected', async () => {
       // Arrange
       const validRequestBody = {
         id: 1234091,
-        name: 'Puppies'
+        name: 'Puppies',
       };
 
       // Act
       const { jsonBody: response, status } = await await useHandler(
         createCategoryHandler,
-        validRequestBody
+        validRequestBody,
       );
 
       // Assert
       expect(status).toEqual(200);
       expect(response).toEqual({
         success: true,
-        category: validRequestBody
+        category: validRequestBody,
       });
     });
   });

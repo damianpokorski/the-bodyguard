@@ -14,7 +14,7 @@ export const parseSpec = async (opts: InferredOptions) => {
   try {
     if (!existsSync(opts.openapi)) {
       throw new Error(
-        [exceptions.openApiFileDoesNotExist, opts.openapi].join(' - ')
+        [exceptions.openApiFileDoesNotExist, opts.openapi].join(' - '),
       );
     }
     return load(readFileSync(opts.openapi, 'utf-8')) as OpenApiSpec;

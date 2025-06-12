@@ -26,7 +26,7 @@ describe('Express example tests', () => {
       // Arrange
       const validPetRequestBody = {
         name: 'Bobby',
-        photoUrls: ['https://bobbies.pics/1.jpg']
+        photoUrls: ['https://bobbies.pics/1.jpg'],
       };
 
       // Act
@@ -46,7 +46,7 @@ describe('Express example tests', () => {
         username: null,
         firstName: 17,
         lastName: false,
-        email: undefined
+        email: undefined,
       };
 
       // Act
@@ -61,8 +61,8 @@ describe('Express example tests', () => {
           "'id' property type must be integer",
           "'username' property type must be string",
           "'firstName' property type must be string",
-          "'lastName' property type must be string"
-        ]
+          "'lastName' property type must be string",
+        ],
       });
     });
     it('Succeeds as expected', async () => {
@@ -71,7 +71,7 @@ describe('Express example tests', () => {
         id: 1234091,
         username: 'bobbieg',
         firstName: 'bob',
-        lastName: 'g'
+        lastName: 'g',
       };
 
       // Act
@@ -82,7 +82,7 @@ describe('Express example tests', () => {
       // Assert
       expect(response.body).toEqual({
         success: true,
-        user: validRequestBody
+        user: validRequestBody,
       });
     });
   });
@@ -92,7 +92,7 @@ describe('Express example tests', () => {
       // Arrange
       const invalidBody = {
         id: 'hello',
-        name: ')(!"*£&)!("*£&!)("£_INVALID_REGEX'
+        name: ')(!"*£&)!("*£&!)("£_INVALID_REGEX',
       };
 
       // Act
@@ -108,26 +108,26 @@ describe('Express example tests', () => {
           properties: {
             id: {
               format: 'int64',
-              type: 'integer'
+              type: 'integer',
             },
             name: {
               pattern: '^[a-zA-Z0-9]+[a-zA-Z0-9\\.\\-_]*[a-zA-Z0-9]+$',
-              type: 'string'
-            }
+              type: 'string',
+            },
           },
           title: 'Pet category',
           type: 'object',
           xml: {
-            name: 'Category'
-          }
-        }
+            name: 'Category',
+          },
+        },
       });
     });
     it('Succeeds as expected', async () => {
       // Arrange
       const validRequestBody = {
         id: 1234091,
-        name: 'Puppies'
+        name: 'Puppies',
       };
 
       // Act
@@ -138,7 +138,7 @@ describe('Express example tests', () => {
       // Assert
       expect(response.body).toEqual({
         success: true,
-        category: validRequestBody
+        category: validRequestBody,
       });
     });
   });

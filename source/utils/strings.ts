@@ -9,7 +9,7 @@ export const exceptions = {
     'Failed to generate a minified bundle (esbuild)',
   failedToGenerateBundle: 'Failed to generate bundle',
   failedToGenerateValidators:
-    'Failed to generate descriptors using AJV & better-ajv-errors'
+    'Failed to generate descriptors using AJV & better-ajv-errors',
 };
 
 export const progress = {};

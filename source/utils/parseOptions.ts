@@ -33,7 +33,7 @@ export const parseOptions = (input: Options): InferredOptions => ({
     schemas: join(process.cwd(), input.output, 'schemas'),
     validators: join(process.cwd(), input.output, 'validators'),
     dist: join(process.cwd(), input.output, 'dist'),
-    tmp: join(process.cwd(), input.output, 'tmp')
+    tmp: join(process.cwd(), input.output, 'tmp'),
   },
-  checksums: join(process.cwd(), input.output, 'dist', 'checksums.json')
+  checksums: join(process.cwd(), input.output, 'dist', 'checksums.json'),
 });

@@ -6,15 +6,15 @@ export default {
     [
       '@semantic-release/changelog',
       {
-        changelogFile: 'CHANGELOG.md'
-      }
+        changelogFile: 'CHANGELOG.md',
+      },
     ],
     '@semantic-release/npm',
     [
       '@semantic-release/github',
       {
-        assets: [{ path: 'CHANGELOG.md', label: 'Changelog' }]
-      }
-    ]
-  ]
+        assets: [{ path: 'CHANGELOG.md', label: 'Changelog' }],
+      },
+    ],
+  ],
 };

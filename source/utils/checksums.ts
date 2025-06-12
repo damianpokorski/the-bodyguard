@@ -18,11 +18,11 @@ export const generateChecksumsFile = (opts: InferredOptions) => {
       [
         opts.openapi,
         join(opts.paths.dist, `index.js`),
-        join(opts.paths.dist, `index.d.ts`)
+        join(opts.paths.dist, `index.d.ts`),
       ]
         .map((path) => ({ [path]: fileChecksum(path) }))
-        .reduce((pathEntry, paths) => ({ ...pathEntry, ...paths }))
-    )
+        .reduce((pathEntry, paths) => ({ ...pathEntry, ...paths })),
+    ),
   );
 };
 
@@ -32,7 +32,7 @@ export const validateChecksums = (opts: InferredOptions) => {
     return false;
   }
   const checksums = JSON.parse(
-    readFileSync(opts.checksums, { encoding: 'utf-8' })
+    readFileSync(opts.checksums, { encoding: 'utf-8' }),
   ) as Record<string, string | null>;
 
   for (const [file, pastChecksum] of Object.entries(checksums)) {
@@ -43,7 +43,7 @@ export const validateChecksums = (opts: InferredOptions) => {
   }
 
   log(
-    `Checksums match, skipping generation... use --force if you want to regenerate anyways`
+    `Checksums match, skipping generation... use --force if you want to regenerate anyways`,
   );
   return true;
 };

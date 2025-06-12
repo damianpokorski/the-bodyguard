@@ -9,7 +9,7 @@ import {
   exceptions,
   log,
   rollbackLine,
-  success
+  success,
 } from '../utils';
 
 const titleCase = (value: string) => {
@@ -45,7 +45,7 @@ interface ModuleDefinition<T> {
     validatorWithErrors: ValidatorWithErrors<T>,
     validatorWithDetailedErrors: ValidatorWithDetailedErrors<T>,
 };
-;`
+;`,
     ];
     success('Prepared the typescript interfaces');
     const models = readdirSync(opts.paths.validators);
@@ -65,7 +65,7 @@ interface ModuleDefinition<T> {
           `/* ${modelNameTitleCase} - OpenApi Models */`,
           ...readFileSync(
             join(opts.paths.models, `${modelName}.ts`),
-            defaultEncoding
+            defaultEncoding,
           )
             .split('\n')
             .filter((line) => !line.includes('import type {')),
@@ -78,8 +78,8 @@ interface ModuleDefinition<T> {
           ``,
           `/* ${modelNameTitleCase} - JSON Schemas */`,
           `export const ${modelNameTitleCase}Schema = ${modelName}Module.${modelName}Schema;`,
-          `/* ${modelNameTitleCase} END */`
-        ]
+          `/* ${modelNameTitleCase} END */`,
+        ],
       );
       success(`Mapped types for ${modelName}`);
     }
@@ -88,7 +88,7 @@ interface ModuleDefinition<T> {
 
     log(
       `Generating typescript declarion files before final bundling...`,
-      false
+      false,
     );
     const s = spawnSync(
       `npx`,
@@ -101,14 +101,14 @@ interface ModuleDefinition<T> {
         `--declaration`,
         `--allowJs`,
         `--removeComments`,
-        `--emitDeclarationOnly`
+        `--emitDeclarationOnly`,
       ],
-      {}
+      {},
     );
     if (s.error || s.status !== 0) {
       throw new BuildException(
         `${exceptions.failedToGenerateBundleDeclarations}`,
-        s.error
+        s.error,
       );
     }
     rollbackLine();
@@ -126,13 +126,13 @@ interface ModuleDefinition<T> {
       target: 'es2020',
       format: 'cjs',
       entryPoints: [opts.paths.barrel],
-      sourcemap: opts.sourcemaps
+      sourcemap: opts.sourcemaps,
     });
 
     if (result.errors && result.errors.length > 0) {
       throw new BuildException(
         exceptions.failedToGenerateBundleEsbuild,
-        result.errors
+        result.errors,
       );
     }
 

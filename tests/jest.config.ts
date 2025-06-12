@@ -4,7 +4,7 @@ import { pathsToModuleNameMapper } from 'ts-jest';
 import ts from 'typescript';
 
 const { compilerOptions } = JSON.parse(
-  readFileSync('./tsconfig.json', { encoding: 'utf-8' })
+  readFileSync('./tsconfig.json', { encoding: 'utf-8' }),
 ) as {
   compilerOptions: {
     baseUrl: string;
@@ -19,16 +19,16 @@ const config: JestConfigWithTsJest = {
   modulePaths: [compilerOptions.baseUrl],
   moduleNameMapper: {
     ...pathsToModuleNameMapper(compilerOptions.paths, {
-      prefix: process.cwd()
+      prefix: process.cwd(),
     }),
     ...{
-      '^(\\./.*)\\.js$': '$1'
-    }
+      '^(\\./.*)\\.js$': '$1',
+    },
   },
   transformIgnorePatterns: [],
   coveragePathIgnorePatterns: ['.builds.*'],
   globalSetup: './setup.ts',
-  globalTeardown: './teardown.ts'
+  globalTeardown: './teardown.ts',
 };
 
 export default config;
