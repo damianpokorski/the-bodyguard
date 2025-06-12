@@ -10,6 +10,6 @@ export default tseslint.config(
   ...tseslint.configs.stylistic,
   prettierPluginRecommended,
   {
-    ignores: ["*.js", "*.json", "*.d.ts", "bin/", "node_modules/", "coverage/"]
-  }
+    ignores: ['*.js', '*.json', '*.d.ts', 'bin/', 'node_modules/', 'coverage/'],
+  },
 );

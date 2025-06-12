@@ -12,11 +12,11 @@ import {
   log,
   rollbackLine,
   success,
-  warn
+  warn,
 } from '../utils';
 
 export const generateValidators = async (
-  opts: InferredOptions
+  opts: InferredOptions,
 ): Promise<void> => {
   try {
     for (const file of readdirSync(opts.paths.schemas)) {
@@ -38,9 +38,9 @@ export const generateValidators = async (
         logger: {
           error: (err) => errors.push(err as string),
           warn: (warn) => warnings.push(warn as string),
-          log
+          log,
         },
-        allErrors: true
+        allErrors: true,
       });
       addFormats(ajv);
 
@@ -100,7 +100,7 @@ export const betterValidatorShort = (data, options = {}) => {
         allowOverwrite: true,
         treeShaking: true,
         target: 'es2020',
-        format: 'esm'
+        format: 'esm',
       });
 
       rollbackLine();
@@ -112,23 +112,26 @@ export const betterValidatorShort = (data, options = {}) => {
           `/* eslint-disable */`,
           `/* Auto generated file, do not edit manually */`,
           readFileSync(`${opts.paths.validators}/${modelName}.js`, {
-            encoding: 'utf-8'
+            encoding: 'utf-8',
           })
             .replace(
               'betterValidator,',
-              `betterValidator as ${modelName}ValidatorWithErrors,`
+              `betterValidator as ${modelName}ValidatorWithErrors,`,
             )
             .replace(
               'betterValidatorShort,',
-              `betterValidatorShort as ${modelName}ValidatorWithErrorsShort,`
+              `betterValidatorShort as ${modelName}ValidatorWithErrorsShort,`,
             )
-            .replace('_default as default', `_default as ${modelName}Validator`)
-        ].join('\n')
+            .replace(
+              '_default as default',
+              `_default as ${modelName}Validator`,
+            ),
+        ].join('\n'),
       );
 
       // Log progress
       success(
-        relative(process.cwd(), `${opts.paths.validators}/${modelName}.ts`)
+        relative(process.cwd(), `${opts.paths.validators}/${modelName}.ts`),
       );
     }
   } catch (error) {

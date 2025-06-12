@@ -8,7 +8,7 @@ import {
   exceptions,
   log,
   rollbackLine,
-  success
+  success,
 } from '../utils';
 
 const encoding = { encoding: 'utf-8' as BufferEncoding };
@@ -33,12 +33,12 @@ export const generateModels = async (opts: InferredOptions): Promise<void> => {
       const path = join(opts.paths.schemas, file);
       const schema = JSON.parse(
         readFileSync(path, {
-          encoding: 'utf-8'
-        })
+          encoding: 'utf-8',
+        }),
       );
       schema['title'] = modelName;
       const compiled = await compile(schema as JSONSchema4, modelName, {
-        format: false
+        format: false,
       });
       writeFileSync(join(opts.paths.models, `${modelName}.ts`), compiled);
     }
@@ -58,7 +58,7 @@ export const generateModels = async (opts: InferredOptions): Promise<void> => {
       if (modelName != modelNameCamelCase) {
         renameSync(
           join(opts.paths.models, modelFilename),
-          join(opts.paths.models, `${modelNameCamelCase}${ext}`)
+          join(opts.paths.models, `${modelNameCamelCase}${ext}`),
         );
       }
     }

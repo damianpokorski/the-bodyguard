@@ -6,7 +6,7 @@ import {
   CategorySchema,
   CategoryValidator,
   PetValidator,
-  UserValidatorWithErrors
+  UserValidatorWithErrors,
 } from './.generated/validation/dist';
 
 // Initialize app
@@ -39,7 +39,7 @@ app.post(`/user`, (req: Request, res: Response) => {
 // Validation as a middleware factory - pass any validator & schema, and use it as a guard
 const validationMiddleware = (
   validator: (body: unknown) => boolean,
-  expectedSchema: Record<string, unknown>
+  expectedSchema: Record<string, unknown>,
 ) => {
   return (req: Request, res: Response, next: NextFunction) => {
     if (!validator(req.body)) {
@@ -58,7 +58,7 @@ app.post(
     // Category is strongly type hinted now
     const category = req.body;
     return res.status(200).send({ success: true, category });
-  }
+  },
 );
 
 // Start service if not in unit test context

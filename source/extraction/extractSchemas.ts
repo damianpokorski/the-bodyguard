@@ -6,12 +6,12 @@ import { BuildException, InferredOptions, success } from '../utils';
 
 export const extractSchemas = async (
   schema: OpenApiSpec,
-  opts: InferredOptions
+  opts: InferredOptions,
 ): Promise<void> => {
   try {
     // Iterate through resolved schemas & save into dir
     const schemas = Object.entries(
-      (await new Resolver().resolve(schema)).result.components.schemas
+      (await new Resolver().resolve(schema)).result.components.schemas,
     );
     for (const pair of schemas) {
       const [key, schema] = pair;
@@ -19,10 +19,10 @@ export const extractSchemas = async (
         key.charAt(0).toLowerCase() + key.slice(1);
       const resultSchemaPath = join(
         opts.paths.schemas,
-        `${camelCaseModelNameForFile}.json`
+        `${camelCaseModelNameForFile}.json`,
       );
       writeFileSync(resultSchemaPath, JSON.stringify(schema, undefined, 2), {
-        encoding: 'utf-8'
+        encoding: 'utf-8',
       });
       success(relative(process.cwd(), resultSchemaPath));
     }

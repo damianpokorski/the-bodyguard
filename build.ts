@@ -5,7 +5,7 @@ import {
   mkdirSync,
   readFileSync,
   rmSync,
-  writeFileSync
+  writeFileSync,
 } from 'fs';
 import { basename, join } from 'path';
 
@@ -35,7 +35,7 @@ for (const entrypoint of entryPoints) {
     sourcemap: true,
     metafile: true,
     external: ['esbuild', 'json-schema-to-typescript'],
-    mainFields: ['module', 'main']
+    mainFields: ['module', 'main'],
   });
   writeFileSync(outfileMetadata, JSON.stringify(result.metafile));
 
@@ -44,7 +44,7 @@ for (const entrypoint of entryPoints) {
     writeFileSync(
       outfile,
       '#!/usr/bin/env node\n\n' + readFileSync(outfile, { encoding: 'utf-8' }),
-      { encoding: 'utf-8' }
+      { encoding: 'utf-8' },
     );
     chmodSync(outfile, 0o777);
   }

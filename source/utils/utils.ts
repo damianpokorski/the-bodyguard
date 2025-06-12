@@ -6,12 +6,12 @@ export const defaultEncoding = { encoding: 'utf-8' as BufferEncoding };
 export class BuildException extends Error {
   constructor(
     msg?: string,
-    private innerError?: Error | unknown
+    private innerError?: Error | unknown,
   ) {
     super(
       [msg, ((innerError ?? {}) as unknown as Error)['message'] ?? undefined]
         .filter((isValid) => isValid)
-        .join(' - ')
+        .join(' - '),
     );
   }
 }
@@ -24,7 +24,7 @@ export const exec = async (
   return [
     result.status == 0 && result.error == undefined,
     result.stdout.toString(),
-    result.stderr.toString()
+    result.stderr.toString(),
   ];
 };
 

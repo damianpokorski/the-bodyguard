@@ -13,7 +13,7 @@ export const buildPetstore = () => {
     '--openapi',
     './tests/unit/petstore/petstore.yaml',
     '--output',
-    output
+    output,
   ]);
 };
 
