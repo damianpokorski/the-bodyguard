@@ -1,20 +1,40 @@
 {
-    "jestrunner.jestCommand": "npm run test --",
-    "search.useIgnoreFiles": true,
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.formatOnPaste": true,
-        "editor.formatOnSave": true,
-        "editor.formatOnType": false,
-        "editor.codeActionsOnSave": {
-            "source.addMissingImports.ts": "never",
-            "source.fixAll.eslint": "always",
-            "source.fixAll.ts": "always",
-            "source.fixAll": "always",
-            "source.organizeImports": "always",
-            "source.removeUnused.ts": "never",
-            "source.removeUnused": "never",
-            "source.sortImports": "always",
-        },
-    },
+  "jestrunner.jestCommand": "npm run test --",
+  "search.useIgnoreFiles": true,
+  // Heavily opinionated vscode settings to enforce consistency
+  // Enforce biome formatting
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": false,
+  "editor.formatOnSaveMode": "file",
+  // Indent config, 2 spaces
+  "editor.indentSize": "tabSize",
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.autoIndent": "advanced",
+  "editor.insertSpaces": true,
+  "editor.rulers": [80],
+  // No sideways scrolling
+  "editor.wordWrap": "on",
+  // Hide gitignored files from explorer, you should have them
+  "explorer.excludeGitIgnore": true,
+  // Inlay type hints -
+  "editor.inlayHints.enabled": "on",
+  "typescript.inlayHints.enumMemberValues.enabled": false,
+  "typescript.inlayHints.parameterNames.enabled": "none",
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": false,
+  "typescript.inlayHints.variableTypes.enabled": false,
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": false,
+  // Prefer barrel imports oven relative
+  "typescript.preferences.importModuleSpecifierEnding": "auto",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  // Fix all and organise imports, remove unused
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "always",
+    "source.organizeImports.biome": "always",
+    "source.sortImports": "always",
+    "source.removeUnusedImports": "always"
+  }
 }
