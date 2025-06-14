@@ -1,5 +1,4 @@
 {
-  "jestrunner.jestCommand": "npm run test --",
   "search.useIgnoreFiles": true,
   // Heavily opinionated vscode settings to enforce consistency
   // Enforce biome formatting
@@ -18,7 +17,7 @@
   // No sideways scrolling
   "editor.wordWrap": "on",
   // Hide gitignored files from explorer, you should have them
-  "explorer.excludeGitIgnore": true,
+  "explorer.excludeGitIgnore": false,
   // Inlay type hints -
   "editor.inlayHints.enabled": "on",
   "typescript.inlayHints.enumMemberValues.enabled": false,
@@ -36,5 +35,8 @@
     "source.organizeImports.biome": "always",
     "source.sortImports": "always",
     "source.removeUnusedImports": "always"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
   }
 }

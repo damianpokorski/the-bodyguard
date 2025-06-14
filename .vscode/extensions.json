@@ -1,9 +1,8 @@
 {
   "recommendations": [
-    "firsttris.vscode-jest-runner",
     "biomejs.biome",
-    "dbaeumer.vscode-eslint",
     "github.vscode-github-actions",
-    "rangav.vscode-thunder-client"
+    "rangav.vscode-thunder-client",
+    "vitest.explorer"
   ]
 }

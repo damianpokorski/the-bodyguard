@@ -136,7 +136,7 @@ if (!CategoryValidator(invalidCategory)) {
 ```ts
 import { Category, CategoryWithErrors } from './.api';
 
-const [category, errors] = UserValidatorWithErrors({
+const [category, errors] = CategoryWithErrors({
     id: "1"
 });
 

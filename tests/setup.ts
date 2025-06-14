@@ -1,4 +1,4 @@
-import { spawnSync } from 'child_process';
+import { spawnSync } from 'node:child_process';
 import { existsSync, rmSync } from 'node:fs';
 
 export const buildPetstore = () => {
@@ -6,15 +6,19 @@ export const buildPetstore = () => {
   if (existsSync(output)) {
     rmSync(output, { force: true, recursive: true });
   }
-  return spawnSync('npm', [
-    'run',
-    'cli',
-    '--',
-    '--openapi',
-    './tests/unit/petstore/petstore.yaml',
-    '--output',
-    output,
-  ]);
+  return spawnSync(
+    'npm',
+    [
+      'run',
+      'cli',
+      '--',
+      '--openapi',
+      './tests/unit/petstore/petstore.yaml',
+      '--output',
+      output,
+    ],
+    { cwd: process.cwd() },
+  );
 };
 
 module.exports = () => {

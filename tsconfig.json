@@ -11,6 +11,7 @@
     "allowJs": true,
     "resolveJsonModule": false,
     "baseUrl": ".",
+    "isolatedModules": true,
     "paths": {
       "@extraction/*": ["source/extraction/*"],
       "@generation/*": ["source/generation/*"],
@@ -19,7 +20,8 @@
       "@cli": ["source/index.ts"],
       "@main": ["source/main.ts"]
     },
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "types": ["vitest/globals"]
   },
   "exclude": ["./bin", "./coverage", "tmp"]
 }

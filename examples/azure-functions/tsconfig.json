@@ -12,7 +12,8 @@
     "resolveJsonModule": false,
     "baseUrl": ".",
     "paths": {},
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "types": ["vitest/globals"]
   },
   "exclude": ["./bin", "./coverage", "tmp"]
 }

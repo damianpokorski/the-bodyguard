@@ -8,7 +8,7 @@ import {
   OrderSchema,
   OrderValidator,
   OrderValidatorWithErrors,
-  Pet,
+  type Pet,
   PetSchema,
   PetValidator,
   PetValidatorWithErrors,
@@ -30,7 +30,7 @@ describe.each`
   ${'Tag'}         | ${TagSchema}         | ${TagValidator}         | ${TagValidatorWithErrors}
   ${'User'}        | ${UserSchema}        | ${UserValidator}        | ${UserValidatorWithErrors}
 `('Module testing $name', ({ schema, validator, validatorWithErrors }) => {
-  const invalidValues = [null, undefined, [], -1, false, function () {}];
+  const invalidValues = [null, undefined, [], -1, false, () => {}];
 
   it(`Schema is defined`, () => {
     expect(schema).toBeDefined();
