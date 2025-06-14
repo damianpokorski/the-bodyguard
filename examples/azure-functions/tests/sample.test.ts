@@ -1,22 +1,18 @@
 // Ignore certain azure function logs
 const ignoreMsg = (msg: string, substr: string[]) =>
   substr.every((str) => msg.includes(str)) ? null : console.log(msg);
-jest
-  .spyOn(console, 'warn')
-  .mockImplementation((arg) =>
-    ignoreMsg(arg, ['"@azure/functions" package', 'test mode']),
-  );
-jest
-  .spyOn(console, 'info')
-  .mockImplementation((arg) =>
-    ignoreMsg(arg, ['"@azure/functions" package', 'test mode']),
-  );
+vi.spyOn(console, 'warn').mockImplementation((arg) =>
+  ignoreMsg(arg, ['"@azure/functions" package', 'test mode']),
+);
+vi.spyOn(console, 'info').mockImplementation((arg) =>
+  ignoreMsg(arg, ['"@azure/functions" package', 'test mode']),
+);
 
 // Import
 import {
-  HttpHandler,
+  type HttpHandler,
   HttpRequest,
-  HttpResponseInit,
+  type HttpResponseInit,
   InvocationContext,
 } from '@azure/functions';
 import {

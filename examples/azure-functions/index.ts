@@ -1,14 +1,14 @@
 import {
   app,
-  FunctionResult,
-  HttpRequest,
-  HttpResponse,
-  HttpResponseInit,
-  InvocationContext,
+  type FunctionResult,
+  type HttpRequest,
+  type HttpResponse,
+  type HttpResponseInit,
+  type InvocationContext,
 } from '@azure/functions';
 
 import {
-  Category,
+  type Category,
   CategorySchema,
   CategoryValidator,
   PetValidator,
@@ -42,6 +42,7 @@ export const createUserHandler = async (
   const body = await request.json();
   const [user, errors] = UserValidatorWithErrors(body);
   if (errors) {
+    context.debug('Body validation failed', errors);
     return {
       jsonBody: { success: false, errors },
       status: 400,
@@ -91,8 +92,8 @@ export const createCategoryHandler = validated<Category>(
   CategoryValidator,
   CategorySchema,
   async (
-    request: HttpRequest,
-    context: InvocationContext,
+    _request: HttpRequest,
+    _context: InvocationContext,
     category,
   ): Promise<HttpResponseInit> => {
     // We know for sure that we have received a valid body

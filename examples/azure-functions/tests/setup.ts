@@ -1,4 +1,4 @@
-import { spawnSync } from 'child_process';
+import { spawnSync } from 'node:child_process';
 
 module.exports = () => {
   console.log('');
@@ -8,6 +8,7 @@ module.exports = () => {
   const testValidator = spawnSync('npm', ['run', 'build:validation'], {
     cwd: __dirname,
   });
+  console.log(testValidator.output.toString());
   if (testValidator.error) {
     throw new Error('Failed to prebuild petstore validators');
   }
