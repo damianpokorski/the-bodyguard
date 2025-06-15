@@ -3,6 +3,11 @@ on: ['pull_request']
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    permissions:
+      issues: write
+      discussions: write
+      pull-requests: write
 
     steps:
       - uses: actions/checkout@v4
@@ -23,14 +28,27 @@ jobs:
       - run: npm run build
         working-directory: .
 
-      - run: npm ci
-        working-directory: ./examples/express
-
-      - run: npm ci
-        working-directory: ./examples/azure-functions
+      - run: npm run ci:examples
+        working-directory: .
 
       - run: npm run lint
         working-directory: .
 
-      - run: npm run test
+      - run: npm run test:coverage
         working-directory: .
+
+      - name: Code Coverage Summary Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: 'coverage/cobertura-coverage.xml'
+          badge: true
+          format: 'markdown'
+          output: 'both'
+
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          recreate: true
+          path: code-coverage-results.md
+

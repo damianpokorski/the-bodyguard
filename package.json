@@ -15,9 +15,10 @@
     "test:coverage": "npm run test -- --coverage",
     "prepare": "husky",
     "release": "semantic-release",
-    "install:examples": "npm run install:examples:azure-functions && npm run install:examples:express",
-    "install:examples:azure-functions": " npm --prefix examples/azure-functions install --ignore-scripts",
-    "install:examples:express": " npm --prefix examples/express install --ignore-scripts"
+    "ci:examples": "npm run ci:examples:azure-functions && npm run ci:examples:express",
+    "ci:examples:azure-functions": " npm --prefix examples/azure-functions ci",
+    "ci:examples:express": " npm --prefix examples/express ci",
+    "cleanup": "rm -rf tmp && rm -rf examples/express/.api && rm -rf examples/azure-functions/.api"
   },
   "author": "Damian Pokorski @damianpokorski",
   "license": "MIT",

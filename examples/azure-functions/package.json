@@ -1,5 +1,5 @@
 {
-  "name": "the-bodyguard-examples-serverless",
+  "name": "the-bodyguard-examples-azure-functions",
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {

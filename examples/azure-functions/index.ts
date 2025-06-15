@@ -1,4 +1,11 @@
 import {
+  type Category,
+  CategorySchema,
+  CategoryValidator,
+  PetValidator,
+  UserValidatorWithErrors,
+} from '.api/dist';
+import {
   app,
   type FunctionResult,
   type HttpRequest,
@@ -6,14 +13,6 @@ import {
   type HttpResponseInit,
   type InvocationContext,
 } from '@azure/functions';
-
-import {
-  type Category,
-  CategorySchema,
-  CategoryValidator,
-  PetValidator,
-  UserValidatorWithErrors,
-} from './.api/dist';
 
 // Simple validation
 export const addPetHandler = async (
