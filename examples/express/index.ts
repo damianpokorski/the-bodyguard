@@ -1,13 +1,18 @@
-import { json } from 'body-parser';
-import express, { Express, NextFunction, Request, Response } from 'express';
-import { ParamsDictionary } from 'express-serve-static-core';
 import {
-  Category,
+  type Category,
   CategorySchema,
   CategoryValidator,
   PetValidator,
   UserValidatorWithErrors,
-} from './.generated/validation/dist';
+} from '.api/dist';
+import { json } from 'body-parser';
+import express, {
+  type Express,
+  type NextFunction,
+  type Request,
+  type Response,
+} from 'express';
+import type { ParamsDictionary } from 'express-serve-static-core';
 
 // Initialize app
 const port = process.env.PORT || 21654;

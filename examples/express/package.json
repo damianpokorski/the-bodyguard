@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build:validation": "the-bodyguard --openapi petstore.yaml --output .generated/validation",
+    "build:validation": "the-bodyguard --openapi petstore.yaml --output .api",
     "test": "vitest run -c vitest.config.mts",
     "start": "tsx index.ts"
   },

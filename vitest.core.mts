@@ -1,13 +1,3 @@
-import tsconfigPaths from 'vite-tsconfig-paths';
-import { defineConfig } from 'vitest/config';
-export default defineConfig({
-  test: {
-    exclude: ['**\/node_modules/**'],
-    include: ['tests/**/*.{test,spec}.?(c|m)[jt]s?(x)'],
-    globals: true,
-    globalSetup: ['./tests/setup.ts'],
-    hookTimeout: 30000,
-    silent: false,
-  },
-  plugins: [tsconfigPaths()],
-});
+import { defineConfig, mergeConfig } from 'vitest/config';
+import baseConfig from './vitest.base.mjs';
+export default mergeConfig(baseConfig, defineConfig({}));

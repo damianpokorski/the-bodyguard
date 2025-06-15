@@ -24,7 +24,6 @@ describe('Petstore generation tests', () => {
   // Cleaning up temporarary dirs, before and after each run
   const cleanUp = () => {
     for (const testDir of testDirs) {
-      console.log(`Cleaned up ${testDir}`);
       cleanUpDir(testDir);
     }
   };

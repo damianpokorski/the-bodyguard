@@ -9,3 +9,5 @@ bin
 .generated
 examples/express/node_modules
 examples/azure-functions/node_modules
+examples/express/.api
+examples/azure-functions/.api
