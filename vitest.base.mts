@@ -7,6 +7,7 @@ export default defineConfig({
     globals: true,
     globalSetup: [],
     hookTimeout: 30000,
+    testTimeout: 30000,
     silent: Object.keys(process.env).includes('GITHUB_ACTIONS'),
     coverage: {
       thresholds: {

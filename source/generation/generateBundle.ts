@@ -1,12 +1,12 @@
 import * as esbuild from 'esbuild';
-import { cpSync, readFileSync, readdirSync, writeFileSync } from 'fs';
-import { spawnSync } from 'node:child_process';
-import { join } from 'path';
+import { cpSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import * as ts from 'typescript';
 import {
   BuildException,
-  InferredOptions,
   defaultEncoding,
   exceptions,
+  type InferredOptions,
   log,
   rollbackLine,
   success,
@@ -90,27 +90,23 @@ interface ModuleDefinition<T> {
       `Generating typescript declarion files before final bundling...`,
       false,
     );
-    const s = spawnSync(
-      `npx`,
-      [
-        `-p`,
-        `typescript`,
-        `--input-spec="${opts.openapi}"`,
-        `tsc`,
-        opts.paths.barrel,
-        `--declaration`,
-        `--allowJs`,
-        `--removeComments`,
-        `--emitDeclarationOnly`,
-      ],
-      {},
-    );
-    if (s.error || s.status !== 0) {
+    ts;
+    try {
+      // Prepare and emit the d.ts files
+      const program = ts.createProgram([opts.paths.barrel], {
+        allowJs: true,
+        declaration: true,
+        removeComments: true,
+        emitDeclarationOnly: true,
+      });
+      program.emit();
+    } catch (e) {
       throw new BuildException(
         `${exceptions.failedToGenerateBundleDeclarations}`,
-        s.error,
+        e,
       );
     }
+
     rollbackLine();
     success('Validated & generated declaration files using tsc');
 
