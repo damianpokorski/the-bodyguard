@@ -24,7 +24,7 @@
   "license": "MIT",
   "type": "commonjs",
   "devDependencies": {
-    "@biomejs/biome": "2.0.0-beta.6",
+    "@biomejs/biome": "2.0.4",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-angular": "^19.3.0",
     "@semantic-release/changelog": "^6.0.3",
