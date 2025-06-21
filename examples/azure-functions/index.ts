@@ -17,7 +17,7 @@ import {
 // Simple validation
 export const addPetHandler = async (
   request: HttpRequest,
-  context: InvocationContext,
+  _context: InvocationContext,
 ): Promise<HttpResponseInit> => {
   const body = await request.json();
   if (!PetValidator(body)) {

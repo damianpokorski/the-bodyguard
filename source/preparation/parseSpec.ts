@@ -1,6 +1,6 @@
-import { existsSync, readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { load } from 'js-yaml';
-import { BuildException, exceptions, InferredOptions } from '../utils';
+import { BuildException, exceptions, type InferredOptions } from '../utils';
 
 interface OpenApiSpecComponent {
   schemas: Record<string, unknown>;

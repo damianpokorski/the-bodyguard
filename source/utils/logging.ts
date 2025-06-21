@@ -23,7 +23,7 @@ export const rollbackLine = () => {
   try {
     process?.stdout?.clearLine(0);
     process?.stdout?.cursorTo(0);
-  } catch (e) {
+  } catch (_e) {
     // In non tty environments the fns above do not work as expected..
     return;
   }

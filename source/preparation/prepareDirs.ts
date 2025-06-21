@@ -1,5 +1,5 @@
-import { existsSync, mkdirSync, rmSync } from 'fs';
-import { InferredOptions } from '../utils';
+import { existsSync, mkdirSync, rmSync } from 'node:fs';
+import type { InferredOptions } from '../utils';
 
 export const prepareDirs = async (opts: InferredOptions) => {
   // Remove dir if it exists

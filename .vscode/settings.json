@@ -11,12 +11,13 @@
   "editor.indentSize": "tabSize",
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
-  "editor.autoIndent": "advanced",
   "editor.insertSpaces": true,
+  "editor.autoIndent": "advanced",
+  // Indent
   "editor.rulers": [80],
   // No sideways scrolling
   "editor.wordWrap": "on",
-  // Hide gitignored files from explorer, you should have them
+  // Do not hide gitignored files
   "explorer.excludeGitIgnore": false,
   // Inlay type hints -
   "editor.inlayHints.enabled": "on",
@@ -33,7 +34,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.biome": "always",
     "source.organizeImports.biome": "always",
-    "source.sortImports": "always",
     "source.removeUnusedImports": "always"
   },
   "[typescript]": {

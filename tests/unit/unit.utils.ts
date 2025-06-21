@@ -1,5 +1,5 @@
+import { existsSync, rmSync } from 'node:fs';
 import { BuildException } from '@utils/utils';
-import { existsSync, rmSync } from 'fs';
 
 export const exceptionBuilder = (messages: string[]) =>
   new BuildException(messages.join(' - '));

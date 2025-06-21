@@ -1,8 +1,8 @@
-import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
 import * as md5 from 'md5-file';
-import { join } from 'path';
 import { log } from './logging';
-import { InferredOptions } from './parseOptions';
+import type { InferredOptions } from './parseOptions';
 
 export const fileChecksum = (path: string) => {
   if (existsSync(path)) {
