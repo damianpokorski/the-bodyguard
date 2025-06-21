@@ -9,7 +9,7 @@ export class BuildException extends Error {
     private innerError?: Error | unknown,
   ) {
     super(
-      [msg, ((innerError ?? {}) as unknown as Error)['message'] ?? undefined]
+      [msg, ((innerError ?? {}) as Error).message ?? undefined]
         .filter((isValid) => isValid)
         .join(' - '),
     );
@@ -22,7 +22,7 @@ export const exec = async (
 ): Promise<[boolean, string, string]> => {
   const result = spawnSync(cmd, args, {});
   return [
-    result.status == 0 && result.error == undefined,
+    result.status === 0 && result.error === undefined,
     result.stdout.toString(),
     result.stderr.toString(),
   ];
@@ -32,11 +32,11 @@ export const npxPackageAvailable = async (packageName: string) => {
   try {
     await getInstalledPath(packageName);
     return true;
-  } catch (packageNotAvailableGlobally) {
+  } catch (_packageNotAvailableGlobally) {
     try {
       await getInstalledPath(packageName, { local: true });
       return true;
-    } catch (packageNotAvailableLocally) {
+    } catch (_packageNotAvailableLocally) {
       return false;
     }
   }

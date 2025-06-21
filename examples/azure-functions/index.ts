@@ -36,12 +36,11 @@ app.http('addPet', {
 // Validation with error results
 export const createUserHandler = async (
   request: HttpRequest,
-  context: InvocationContext,
+  _context: InvocationContext,
 ): Promise<HttpResponseInit> => {
   const body = await request.json();
   const [user, errors] = UserValidatorWithErrors(body);
   if (errors) {
-    context.debug('Body validation failed', errors);
     return {
       jsonBody: { success: false, errors },
       status: 400,
