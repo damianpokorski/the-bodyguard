@@ -1,4 +1,3 @@
-import { getInstalledPath } from 'get-installed-path';
 import { spawnSync } from 'node:child_process';
 
 export const defaultEncoding = { encoding: 'utf-8' as BufferEncoding };
@@ -26,18 +25,4 @@ export const exec = async (
     result.stdout.toString(),
     result.stderr.toString(),
   ];
-};
-
-export const npxPackageAvailable = async (packageName: string) => {
-  try {
-    await getInstalledPath(packageName);
-    return true;
-  } catch (_packageNotAvailableGlobally) {
-    try {
-      await getInstalledPath(packageName, { local: true });
-      return true;
-    } catch (_packageNotAvailableLocally) {
-      return false;
-    }
-  }
 };

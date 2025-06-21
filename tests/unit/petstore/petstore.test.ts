@@ -71,22 +71,6 @@ describe('Petstore generation tests', () => {
       ",
           ],
           [
-            "Checking whether the required NPM packages are installed...
-      ",
-          ],
-          [
-            "  [92m✔[39m esbuild
-      ",
-          ],
-          [
-            "  [92m✔[39m typescript
-      ",
-          ],
-          [
-            "  [92m✔[39m corepack
-      ",
-          ],
-          [
             "
       Starting...
       ",
@@ -97,22 +81,6 @@ describe('Petstore generation tests', () => {
           ],
           [
             "  [33m![39m Failed to find matching checksums.. generating.
-      ",
-          ],
-          [
-            "Checking whether the required NPM packages are installed...
-      ",
-          ],
-          [
-            "  [92m✔[39m esbuild
-      ",
-          ],
-          [
-            "  [92m✔[39m typescript
-      ",
-          ],
-          [
-            "  [92m✔[39m corepack
       ",
           ],
           [
@@ -296,38 +264,6 @@ describe('Petstore generation tests', () => {
           ],
         ],
         "results": [
-          {
-            "type": "return",
-            "value": undefined,
-          },
-          {
-            "type": "return",
-            "value": undefined,
-          },
-          {
-            "type": "return",
-            "value": undefined,
-          },
-          {
-            "type": "return",
-            "value": undefined,
-          },
-          {
-            "type": "return",
-            "value": undefined,
-          },
-          {
-            "type": "return",
-            "value": undefined,
-          },
-          {
-            "type": "return",
-            "value": undefined,
-          },
-          {
-            "type": "return",
-            "value": undefined,
-          },
           {
             "type": "return",
             "value": undefined,
