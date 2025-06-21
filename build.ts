@@ -34,8 +34,9 @@ for (const entrypoint of entryPoints) {
     platform: 'node',
     sourcemap: true,
     metafile: true,
-    external: ['esbuild', 'json-schema-to-typescript'],
     mainFields: ['module', 'main'],
+    // Peer dependencies
+    external: ['esbuild', 'json-schema-to-typescript', 'typescript'],
   });
   writeFileSync(outfileMetadata, JSON.stringify(result.metafile));
 
