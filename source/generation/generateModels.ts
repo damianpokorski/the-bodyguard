@@ -1,11 +1,11 @@
-import { readFileSync, readdirSync, renameSync, writeFileSync } from 'fs';
-import { JSONSchema4 } from 'json-schema';
+import { readdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
+import { join, relative } from 'node:path';
+import type { JSONSchema4 } from 'json-schema';
 import { compile } from 'json-schema-to-typescript';
-import { join, relative } from 'path';
 import {
   BuildException,
-  InferredOptions,
   exceptions,
+  type InferredOptions,
   log,
   rollbackLine,
   success,
@@ -17,7 +17,7 @@ const camelCase = (string: string) => {
   return string
     .split('-')
     .map((part, index) => {
-      if (index == 0) {
+      if (index === 0) {
         return part;
       }
       return part.charAt(0).toUpperCase() + part.slice(1);
@@ -36,7 +36,7 @@ export const generateModels = async (opts: InferredOptions): Promise<void> => {
           encoding: 'utf-8',
         }),
       );
-      schema['title'] = modelName;
+      schema.title = modelName;
       const compiled = await compile(schema as JSONSchema4, modelName, {
         format: false,
       });
@@ -55,7 +55,7 @@ export const generateModels = async (opts: InferredOptions): Promise<void> => {
       const modelNameCamelCase = camelCase(modelName);
       replaces[modelName] = modelNameCamelCase;
       // Rename files if needed
-      if (modelName != modelNameCamelCase) {
+      if (modelName !== modelNameCamelCase) {
         renameSync(
           join(opts.paths.models, modelFilename),
           join(opts.paths.models, `${modelNameCamelCase}${ext}`),

@@ -1,8 +1,8 @@
+import { writeFileSync } from 'node:fs';
+import { join, relative } from 'node:path';
 import { Resolver } from '@stoplight/json-ref-resolver';
-import { writeFileSync } from 'fs';
-import { join, relative } from 'path';
-import { OpenApiSpec } from '../preparation/parseSpec';
-import { BuildException, InferredOptions, success } from '../utils';
+import type { OpenApiSpec } from '../preparation/parseSpec';
+import { BuildException, type InferredOptions, success } from '../utils';
 
 export const extractSchemas = async (
   schema: OpenApiSpec,

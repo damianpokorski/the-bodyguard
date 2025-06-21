@@ -1,6 +1,6 @@
-import * as esbuild from 'esbuild';
 import { cpSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import * as esbuild from 'esbuild';
 import * as ts from 'typescript';
 import {
   BuildException,

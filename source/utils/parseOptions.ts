@@ -1,4 +1,4 @@
-import { join } from 'path/posix';
+import { join } from 'node:path/posix';
 
 // Base options
 export interface Options {

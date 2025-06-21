@@ -57,7 +57,7 @@ jobs:
           rm -rf examples
           rm -rf tests
           rm biome*
-          rm commitlint
+          rm commitlint*
           rm vitest*
 
       - run: npm run release

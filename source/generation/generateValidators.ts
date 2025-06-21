@@ -1,14 +1,14 @@
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { relative } from 'node:path';
 import { Ajv } from 'ajv';
-import addFormats from 'ajv-formats';
 import { default as ajvStandaloneCode } from 'ajv/dist/standalone';
+import addFormats from 'ajv-formats';
 import * as esbuild from 'esbuild';
-import { readFileSync, readdirSync, writeFileSync } from 'fs';
-import { relative } from 'path';
 import {
   BuildException,
-  InferredOptions,
   error,
   exceptions,
+  type InferredOptions,
   log,
   rollbackLine,
   success,

@@ -1,6 +1,7 @@
-import { Options } from '@utils/parseOptions';
+import type { Options } from '@utils/parseOptions';
 import { Command } from 'commander';
 import { main } from './main';
+
 export * from './main';
 
 new Command('the-bodyguard')

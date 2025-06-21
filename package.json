@@ -6,8 +6,8 @@
   "bin": "bin/index.js",
   "scripts": {
     "build": "tsx build.ts",
-    "lint": "biome format .",
-    "lint:fix": "biome format --write .",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write --unsafe .",
     "cli": "tsx source/index.ts",
     "start:petstore": "npm run cli -- --openapi tests/unit/petstore/petstore.yaml --output ./tmp/petstore-dev",
     "start:petstore:build": "npm run build && node bin/index.js --openapi tests/unit/petstore/petstore.yaml --output ./tmp/petstore-dev",

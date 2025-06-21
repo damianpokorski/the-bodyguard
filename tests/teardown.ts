@@ -1,4 +1,4 @@
-import { existsSync, rmSync } from 'fs';
+import { existsSync, rmSync } from 'node:fs';
 
 export const teardown = () => {
   console.log('');

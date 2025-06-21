@@ -1,4 +1,3 @@
-import * as esbuild from 'esbuild';
 import {
   chmodSync,
   existsSync,
@@ -6,8 +5,9 @@ import {
   readFileSync,
   rmSync,
   writeFileSync,
-} from 'fs';
-import { basename, join } from 'path';
+} from 'node:fs';
+import { basename, join } from 'node:path';
+import * as esbuild from 'esbuild';
 
 const outdir = './bin';
 const entryPoints = [`./source/main.ts`, './source/index.ts'];
@@ -44,7 +44,7 @@ for (const entrypoint of entryPoints) {
   if (entrypoint.includes('index.ts')) {
     writeFileSync(
       outfile,
-      '#!/usr/bin/env node\n\n' + readFileSync(outfile, { encoding: 'utf-8' }),
+      `#!/usr/bin/env node\n\n${readFileSync(outfile, { encoding: 'utf-8' })}`,
       { encoding: 'utf-8' },
     );
     chmodSync(outfile, 0o777);
