@@ -4,7 +4,6 @@ import { generateModels } from './generation/generateModels';
 import { generateValidators } from './generation/generateValidators';
 import { parseSpec } from './preparation/parseSpec';
 import { prepareDirs } from './preparation/prepareDirs';
-import { validateRequiredPackages } from './preparation/validateRequiredPackages';
 import { log, type Options, parseOptions, success, warn } from './utils';
 import { generateChecksumsFile, validateChecksums } from './utils/checksums';
 
@@ -15,9 +14,6 @@ export const main = async (config: Options) => {
     return;
   }
   warn(`Failed to find matching checksums.. generating.`);
-
-  log(`Checking whether the required NPM packages are installed...`);
-  await validateRequiredPackages();
 
   // Import
   log(`\nStarting...`);
