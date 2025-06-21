@@ -1,5 +1,7 @@
 on: ['pull_request']
 
+name: Pull requests
+
 permissions:
   contents: read
 
