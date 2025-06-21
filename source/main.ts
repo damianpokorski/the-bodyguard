@@ -5,7 +5,7 @@ import { generateValidators } from './generation/generateValidators';
 import { parseSpec } from './preparation/parseSpec';
 import { prepareDirs } from './preparation/prepareDirs';
 import { validateRequiredPackages } from './preparation/validateRequiredPackages';
-import { Options, log, parseOptions, success, warn } from './utils';
+import { log, type Options, parseOptions, success, warn } from './utils';
 import { generateChecksumsFile, validateChecksums } from './utils/checksums';
 
 export const main = async (config: Options) => {
