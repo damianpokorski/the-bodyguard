@@ -1,6 +1,8 @@
 # The bodyguard
 
-A an opinionated request body validation generator - and it achieves that by relying on an existing set of tools rather than re-inventing the wheel. Just wrapping them around in a convenient plug and play package.
+A an opinionated request body validation generator - and it achieves that by relying on an existing set of tools rather than re-inventing the wheel. 
+
+Just wrapping them around in a convenient plug and play package.
 
 ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) _This package is very much under active development & not production ready for time being._ ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png)
 
@@ -9,8 +11,8 @@ The core of the process is as follows:
 - Parse & Validate specification ([js-yaml](https://www.npmjs.com/package/js-yaml) as an initial pass)
 - Extract & Flatten JSON Schemas from an OpenAPI specification ([@stoplight/json-ref-resolver](https://www.npmjs.com/package/json-schema-to-typescript))
 - Generate typescript models for the same schemas json-schema-to-typescript ([json-schema-to-typescript](https://openapi-generator.tech/docs/generators/typescript-axios))
-- Generate a set of standalone validators for each of the Schemas ([ajv](https://ajv.js.org/) is absolutely amazing, we also utilize [standlone](https://ajv.js.org/standalone.html))
-- Generate a single bundled and minified output, that can be inserted into any platform without relying on any dependencies ((esbuild)[https://esbuild.github.io/])
+- Generate a set of standalone validators for each of the Schemas ([ajv](https://ajv.js.org/) is absolutely amazing, we also utilize [standalone](https://ajv.js.org/standalone.html))
+- Generate a single bundled and minified output, that can be inserted into any platform without relying on any dependencies ([esbuild](https://esbuild.github.io/))
 
 ## The goals
 

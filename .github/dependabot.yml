@@ -1,0 +1,22 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+
+  # Examples do not need maintenance, at least for now
+  # - package-ecosystem: npm
+  #   directory: /examples/azure-functions
+  #   schedule:
+  #     interval: daily
+
+  # - package-ecosystem: npm
+  #   directory: /examples/express
+  #   schedule:
+  #     interval: daily
