@@ -46,7 +46,7 @@ export const generateModels = async (opts: InferredOptions): Promise<void> => {
     rollbackLine();
     success('Models generated successfully using - json-schema-to-typescript');
 
-    // Ensure consistent naming - swap any snake-case filenames & model names into camelcases
+    // Ensure consistent naming - swap any snake-case filenames & model names into camelcase
     log(`  - Ensuring camel case naming convention`, false);
     const replaces = {} as Record<string, string>;
     for (const modelFilename of readdirSync(`${opts.paths.models}`)) {

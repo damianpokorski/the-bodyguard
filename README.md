@@ -26,11 +26,11 @@ This package has been designed with a few key points in mind:
 
 **We should have a platform agnostic result**
 
-- Leverage type generation as much as possible to minimize drift between documentation and code. Ideally I would want to just treat generated validators as a dependency, & not have to worry about validating their code. With this generator you get all of the relevant declarions, but final bundle is just a common.js import - in a single file. Bundled, tree-shaken & minified (sourcemaps are optional)
+- Leverage type generation as much as possible to minimize drift between documentation and code. Ideally I would want to just treat generated validators as a dependency, & not have to worry about validating their code. With this generator you get all of the relevant declarations, but final bundle is just a common.js import - in a single file. Bundled, tree-shaken & minified (sourcemaps are optional)
 
 - Generates a fast authentication layer that's immune to cold start issues (i.e. processing a complex json schema can take precious milliseconds, doing it on repeat - on FaaS infrastructure is quite wasteful.. ) - we can sidestep that with ajv standalone & esbuild.
 
-- Error output should be as straightfoward and focus on the actual errors, no custom object, random exceptions being thrown unexpectedly etc. A few different variations should be available, whether we just need a `true/false` or something a bit more verbose.
+- Error output should be as straightforward and focus on the actual errors, no custom object, random exceptions being thrown unexpectedly etc. A few different variations should be available, whether we just need a `true/false` or something a bit more verbose.
 
 
 ## Installation

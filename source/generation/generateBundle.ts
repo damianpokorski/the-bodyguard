@@ -87,7 +87,7 @@ interface ModuleDefinition<T> {
     writeFileSync(opts.paths.barrel, barrelContents, { encoding: 'utf-8' });
 
     log(
-      `Generating typescript declarion files before final bundling...`,
+      `Generating typescript declaration files before final bundling...`,
       false,
     );
     ts;

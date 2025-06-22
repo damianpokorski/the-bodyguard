@@ -38,5 +38,12 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "biomejs.biome"
-  }
+  },
+  "cSpell.words": [
+    "apideck",
+    "damianpokorski",
+    "nonintegers",
+    "petstore",
+    "Pokorski"
+  ]
 }
