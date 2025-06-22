@@ -21,7 +21,7 @@ export const main = async (config: Options) => {
   const spec = await parseSpec(opts);
   success(`OpenAPI Specification validated`);
 
-  // Export JSONchemas
+  // Export JSON schemas
   log(`\nExtracting JSON Schemas...`);
   await extractSchemas(spec, opts);
 

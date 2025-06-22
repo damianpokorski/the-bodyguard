@@ -50,10 +50,10 @@ for (const entrypoint of entryPoints) {
     chmodSync(outfile, 0o777);
   }
 
-  const analytisResult = esbuild
+  const analyticsResult = esbuild
     .analyzeMetafileSync(JSON.stringify(result.metafile))
     .split('\n');
-  console.log(analytisResult.slice(0, 10).join('\n'));
-  console.log(`   ... and ${analytisResult.length - 11} more`);
+  console.log(analyticsResult.slice(0, 10).join('\n'));
+  console.log(`   ... and ${analyticsResult.length - 11} more`);
   console.log();
 }

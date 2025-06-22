@@ -3,6 +3,7 @@
     "biomejs.biome",
     "github.vscode-github-actions",
     "rangav.vscode-thunder-client",
-    "vitest.explorer"
+    "vitest.explorer",
+    "streetsidesoftware.code-spell-checker"
   ]
 }

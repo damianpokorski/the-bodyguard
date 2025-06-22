@@ -69,7 +69,7 @@ describe('Express example tests', () => {
       // Arrange
       const validRequestBody = {
         id: 1234091,
-        username: 'bobbieg',
+        username: 'bobbie',
         firstName: 'bob',
         lastName: 'g',
       };

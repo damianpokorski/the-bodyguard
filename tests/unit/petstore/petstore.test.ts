@@ -244,7 +244,7 @@ describe('Petstore generation tests', () => {
       ",
           ],
           [
-            "Generating typescript declarion files before final bundling...",
+            "Generating typescript declaration files before final bundling...",
           ],
           [
             "  [92m✔[39m Validated & generated declaration files using tsc
